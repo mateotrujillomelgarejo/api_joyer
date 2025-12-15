@@ -1,0 +1,12 @@
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\bin\Debug\net8.0\api_joyeria.Domain.deps.json
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\bin\Debug\net8.0\api_joyeria.Domain.dll
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\bin\Debug\net8.0\api_joyeria.Domain.pdb
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\obj\Debug\net8.0\api_joyeria.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\obj\Debug\net8.0\api_joyeria.Domain.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\obj\Debug\net8.0\api_joyeria.Domain.AssemblyInfo.cs
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\obj\Debug\net8.0\api_joyeria.Domain.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\obj\Debug\net8.0\api_joyeria.Domain.sourcelink.json
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\obj\Debug\net8.0\api_joyeria.Domain.dll
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\obj\Debug\net8.0\refint\api_joyeria.Domain.dll
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\obj\Debug\net8.0\api_joyeria.Domain.pdb
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Domain\obj\Debug\net8.0\ref\api_joyeria.Domain.dll

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "api_joyeria.Domain/1.0.0": {
+        "runtime": {
+          "api_joyeria.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "api_joyeria.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
