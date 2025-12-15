@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_joyeria.Api", "api_joyeria.Api\api_joyeria.Api.csproj", "{433F391C-C2C0-4621-890B-E848050CE8C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_joyeria.Application", "api_joyeria.Application\api_joyeria.Application.csproj", "{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_joyeria.Domain", "api_joyeria.Domain\api_joyeria.Domain.csproj", "{E2E4F20B-7F73-45D3-90B9-37DDD6752566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_joyeria.Infrastructure", "api_joyeria.Infrastructure\api_joyeria.Infrastructure.csproj", "{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C391760A-080B-4395-88FC-43A956188828}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_joyeria.Tests", "api_joyeria.Tests\api_joyeria.Tests.csproj", "{6B0BE598-E787-423E-BE4F-A20EF9C1EA96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{433F391C-C2C0-4621-890B-E848050CE8C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433F391C-C2C0-4621-890B-E848050CE8C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433F391C-C2C0-4621-890B-E848050CE8C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433F391C-C2C0-4621-890B-E848050CE8C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2E4F20B-7F73-45D3-90B9-37DDD6752566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2E4F20B-7F73-45D3-90B9-37DDD6752566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2E4F20B-7F73-45D3-90B9-37DDD6752566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2E4F20B-7F73-45D3-90B9-37DDD6752566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B0BE598-E787-423E-BE4F-A20EF9C1EA96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B0BE598-E787-423E-BE4F-A20EF9C1EA96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B0BE598-E787-423E-BE4F-A20EF9C1EA96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B0BE598-E787-423E-BE4F-A20EF9C1EA96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{433F391C-C2C0-4621-890B-E848050CE8C8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E2E4F20B-7F73-45D3-90B9-37DDD6752566} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6B0BE598-E787-423E-BE4F-A20EF9C1EA96} = {C391760A-080B-4395-88FC-43A956188828}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B0F8C15-1E9A-4E56-AD7B-5C7F4C3F5A78}
+	EndGlobalSection
+EndGlobal

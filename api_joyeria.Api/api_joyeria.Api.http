@@ -1,0 +1,6 @@
+@api_joyeria.Api_HostAddress = http://localhost:5268
+
+GET {{api_joyeria.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
