@@ -1,5 +1,38 @@
 [
   {
+    "ContainingType": "api_joyeria.Api.Controllers.CheckoutController",
+    "Method": "GetOrder",
+    "RelativePath": "api/Checkout/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "GetOrder"
+  },
+  {
+    "ContainingType": "api_joyeria.Api.Controllers.CheckoutController",
+    "Method": "GuestCheckout",
+    "RelativePath": "api/Checkout/guest",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "api_joyeria.Application.DTOs.GuestCheckoutDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "api_joyeria.Api.Controllers.ProductosController",
     "Method": "GetAll",
     "RelativePath": "api/Productos",

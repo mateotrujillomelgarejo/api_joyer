@@ -5,6 +5,61 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Checkout/guest": {
+      "post": {
+        "tags": [
+          "Checkout"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuestCheckoutDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuestCheckoutDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuestCheckoutDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Checkout/{id}": {
+      "get": {
+        "tags": [
+          "Checkout"
+        ],
+        "operationId": "GetOrder",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Productos": {
       "get": {
         "tags": [
@@ -172,6 +227,69 @@
   },
   "components": {
     "schemas": {
+      "GuestCheckoutDto": {
+        "required": [
+          "city",
+          "guestEmail",
+          "guestName",
+          "items",
+          "street"
+        ],
+        "type": "object",
+        "properties": {
+          "guestName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "guestEmail": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "street": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "city": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GuestCheckoutItemDto"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "GuestCheckoutItemDto": {
+        "required": [
+          "productId"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "ProductoDto": {
         "type": "object",
         "properties": {
