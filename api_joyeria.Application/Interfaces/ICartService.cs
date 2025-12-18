@@ -1,5 +1,6 @@
 ﻿using api_joyeria.Application.DTOs;
 
+
 namespace api_joyeria.Application.Interfaces;
 
 public interface ICartService
@@ -12,4 +13,7 @@ public interface ICartService
     Task<CartDto> AddItemToCartAsync(int cartId, CartItemDto itemDto);
     Task RemoveItemFromCartAsync(int cartId, int itemId, CancellationToken ct = default);
     Task ClearCartAsync(int cartId, CancellationToken ct = default);
+
+    Task<CartDto> ValidateCartBeforeCheckoutAsync(int cartId, CancellationToken ct = default);
+
 }

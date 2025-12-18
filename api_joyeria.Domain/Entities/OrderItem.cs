@@ -2,13 +2,9 @@
 
 public class OrderItem
 {
-    public int Id { get; set; }
-    public int OrderId { get; set; }
-    public Order? Order { get; set; }
-
-    public int ProductId { get; set; }
-    public string ProductName { get; set; } = string.Empty;
-    public decimal UnitPrice { get; set; }
-    public int Quantity { get; set; }
-    public decimal Subtotal { get; set; }
+    public Guid Id { get; set; } // ID único.
+    public Guid OrderId { get; set; } // Relacionado con el pedido.
+    public Guid ProductId { get; set; } // Relacionado con el producto comprado.
+    public int Quantity { get; set; } // Cantidad de productos.
+    public decimal Price { get; set; } // Precio unitario cuando se compró.
 }

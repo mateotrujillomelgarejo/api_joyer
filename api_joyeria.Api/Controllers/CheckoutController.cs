@@ -2,45 +2,31 @@
 using api_joyeria.Application.Interfaces;
 using api_joyeria.Application.DTOs;
 
+
 namespace api_joyeria.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/checkout")]
 public class CheckoutController : ControllerBase
 {
+    private readonly ICartService _cartService;
     private readonly IOrderService _orderService;
 
-    public CheckoutController(IOrderService orderService) => _orderService = orderService;
-
-    [HttpPost("guest")]
-    public async Task<IActionResult> GuestCheckout([FromBody] GuestCheckoutDto dto)
+    public CheckoutController(ICartService cartService, IOrderService orderService)
     {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-
-        try
-        {
-            var order = await _orderService.GuestCheckoutAsync(dto);
-            return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order);
-        }
-        catch (KeyNotFoundException knf)
-        {
-            return NotFound(new { message = knf.Message });
-        }
-        catch (InvalidOperationException ioe)
-        {
-            return BadRequest(new { message = ioe.Message });
-        }
-        catch (ArgumentException ae)
-        {
-            return BadRequest(new { message = ae.Message });
-        }
+        _cartService = cartService;
+        _orderService = orderService;
     }
 
-    [HttpGet("{id:int}", Name = "GetOrder")]
-    public async Task<IActionResult> GetOrder(int id)
+    [HttpPost]
+    public async Task<IActionResult> StartCheckout([FromBody] GuestCheckoutDto dto)
     {
-        var order = await _orderService.GetByIdAsync(id);
-        if (order == null) return NotFound();
+        var cart = await _cartService.GetCartByTokenAsync(dto.GuestToken);
+
+        if (cart == null || cart.Items.Count == 0)
+            return BadRequest("Cart is empty");
+
+        var order = await _orderService.CreateOrderFromCartAsync(cart.Id, dto);
         return Ok(order);
     }
 }

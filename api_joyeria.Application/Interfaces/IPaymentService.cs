@@ -1,7 +1,9 @@
-﻿namespace api_joyeria.Application.Interfaces;
+﻿using api_joyeria.Application.DTOs;
+
+namespace api_joyeria.Application.Interfaces;
 
 public interface IPaymentService
 {
-    Task<PaymentDto> CreatePaymentAsync(PaymentDto dto, CancellationToken ct = default);
-    Task<PaymentDto?> GetPaymentByIdAsync(int id, CancellationToken ct = default);
+    Task ProcessPaymentAsync(int orderId, string method, CancellationToken ct = default);
+
 }

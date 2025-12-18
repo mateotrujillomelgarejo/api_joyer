@@ -1,106 +1,68 @@
-﻿using AutoMapper;
-using api_joyeria.Application.DTOs;
+﻿using api_joyeria.Application.DTOs;
 using api_joyeria.Application.Interfaces;
-using api_joyeria.Domain.Entities;
-
-namespace api_joyeria.Application.Services;
 
 public class CartService : ICartService
 {
-    private readonly ICartRepository _cartRepo;
-    private readonly IMapper _mapper;
+    private readonly ICartRepository _cartRepository;
+    private readonly IGuestTokenGenerator _guestTokenGenerator;
 
-    public CartService(ICartRepository cartRepo, IMapper mapper)
+    public 
+        CartService(ICartRepository cartRepository, IGuestTokenGenerator guestTokenGenerator)
     {
-        _cartRepo = cartRepo;
-        _mapper = mapper;
+        _cartRepository = cartRepository;
+        _guestTokenGenerator = guestTokenGenerator;
     }
 
-    public async Task<CartDto> CreateCartAsync()
+    public Cart CreateCart()
     {
+        var guestToken = _guestTokenGenerator.Generate();
         var cart = new Cart
         {
-            GuestToken = Guid.NewGuid().ToString(),
-            CreatedAt = DateTime.UtcNow,
-            ExpiredAt = DateTime.UtcNow.AddMinutes(30) // Expira en 30 minutos
+            Id = Guid.NewGuid(),
+            GuestToken = guestToken.Token,
+            ExpirationDate = guestToken.ExpirationDate
         };
+        _cartRepository.Add(cart);
+        return cart;
+    }
 
-        await _cartRepo.AddAsync(cart);
-        await _cartRepo.SaveChangesAsync();
-        return _mapper.Map<CartDto>(cart);
+    public Cart GetCartByToken(string token)
+    {
+        var cart = _cartRepository.GetByToken(token);
+        if (cart == null || cart.ExpirationDate < DateTime.UtcNow)
+            throw new Exception("Cart not found or expired");
+        return cart;
     }
 
     public async Task<CartDto?> GetCartByTokenAsync(string guestToken, CancellationToken ct = default)
     {
-        var cart = await _cartRepo.GetCartByTokenAsync(guestToken, ct);
-        return cart == null ? null : _mapper.Map<CartDto>(cart);
-    }
+        var cart = await _cartRepository.GetByTokenAsync(guestToken, ct);
 
-    public async Task<IEnumerable<CartDto>> GetActiveCartsAsync(CancellationToken ct = default)
-    {
-        var activeCarts = await _cartRepo.GetActiveCartsAsync(ct);
-        return _mapper.Map<IEnumerable<CartDto>>(activeCarts);
-    }
+        if (cart == null || cart.ExpiryDate < DateTime.UtcNow)
+            return null;
 
-    public async Task ExpireCartAsync(int cartId, CancellationToken ct = default)
-    {
-        await _cartRepo.ExpireCartAsync(cartId, ct);
-    }
-
-    public async Task<CartDto> AddItemToCartAsync(int cartId, CartItemDto itemDto)
-    {
-        var cart = await _cartRepo.GetByIdAsync(cartId);
-        if (cart == null) throw new KeyNotFoundException($"Carrito {cartId} no encontrado.");
-
-        if (cart.ExpiredAt <= DateTime.UtcNow)
-            throw new InvalidOperationException($"El carrito {cartId} ya ha expirado.");
-
-        var item = _mapper.Map<CartItem>(itemDto);
-        var existingItem = cart.Items.FirstOrDefault(i => i.ProductId == itemDto.ProductId);
-
-        if (existingItem != null)
+        return new CartDto
         {
-            existingItem.Quantity += item.Quantity;
-        }
-        else
-        {
-            cart.Items.Add(item);
-        }
-
-        await _cartRepo.SaveChangesAsync();
-        return _mapper.Map<CartDto>(cart);
+            Id = cart.Id,
+            GuestToken = cart.GuestToken,
+            Items = cart.Items.Select(i => new CartItemDto
+            {
+                ProductId = i.ProductId,
+                Quantity = i.Quantity,
+                Price = i.Price
+            }).ToList()
+        };
     }
 
-    public async Task<CartDto?> GetCartByIdAsync(int cartId, CancellationToken ct = default)
+    public void AddItemToCart(string token, CartItem item)
     {
-        var cart = await _cartRepo.GetByIdAsync(cartId, ct);
-        return cart == null ? null : _mapper.Map<CartDto>(cart);
+        var cart = GetCartByToken(token);
+        cart.Items.Add(item);
+        _cartRepository.Update(cart);
     }
 
-
-    public async Task RemoveItemFromCartAsync(int cartId, int itemId, CancellationToken ct = default)
+    public void ClearExpiredCarts()
     {
-        var cart = await _cartRepo.GetByIdAsync(cartId, ct);
-        if (cart == null)
-            throw new KeyNotFoundException("Carrito no encontrado");
-
-        var item = cart.Items.FirstOrDefault(i => i.Id == itemId);
-        if (item == null)
-            throw new KeyNotFoundException("Producto no encontrado");
-
-        cart.Items.Remove(item);
-        await _cartRepo.SaveChangesAsync(ct);
+        _cartRepository.DeleteExpired(DateTime.UtcNow);
     }
-
-
-    public async Task ClearCartAsync(int cartId, CancellationToken ct = default)
-    {
-        var cart = await _cartRepo.GetByIdAsync(cartId, ct);
-        if (cart == null)
-            throw new KeyNotFoundException("Carrito no encontrado");
-
-        cart.Items.Clear();
-        await _cartRepo.SaveChangesAsync(ct);
-    }
-
 }

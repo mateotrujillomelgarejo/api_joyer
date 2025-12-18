@@ -5,7 +5,6 @@ using api_joyeria.Api.Middleware;
 using api_joyeria.Api.AutoMapper;
 using api_joyeria.Infrastructure.Repositories;
 using api_joyeria.Application.Interfaces;
-using api_joyeria.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,9 +29,15 @@ builder.Services.AddAutoMapper(typeof(MappingProfile), typeof(OrderMappingProfil
 // DI: Repositories & Services
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
-builder.Services.AddScoped<IProductoService, ProductoService>();
+
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IOrderService, OrderService>();
+
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<ICartService, CartService>();
+
+
+
+
 
 
 // FluentValidation, CORS, Authentication etc. can be added here.

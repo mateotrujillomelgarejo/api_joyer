@@ -2,13 +2,11 @@
 
 public class CartItem
 {
-    public int Id { get; set; }
-    public int CartId { get; set; } // Foreign key to the Cart
-    public Cart? Cart { get; set; } // Navigation property
+    public Guid Id { get; set; }
+    public Guid CartId { get; set; }
+    public Cart Cart { get; set; } = null!;
 
-    public int ProductId { get; set; } // Reference to the product
-    public string ProductName { get; set; } = string.Empty; // Name of the product
-    public decimal UnitPrice { get; set; } // Price per unit of the product
-    public int Quantity { get; set; } // Quantity of the product in the cart
-    public decimal Subtotal => UnitPrice * Quantity; // Calculate subtotal
+    public Guid ProductId { get; set; }
+    public int Quantity { get; set; }
+    public decimal Price { get; set; }
 }

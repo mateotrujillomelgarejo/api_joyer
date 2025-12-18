@@ -2,10 +2,10 @@
 
 public class OrderCustomer
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; } // ID único.
+    public Guid OrderId { get; set; } // Relacionado con la orden.
+    public string FullName { get; set; } // Nombre y apellido del cliente.
+    public string Phone { get; set; } // Teléfono contacto o envío.
 
-    public string FullName { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
-
-    public ICollection<Order> Orders { get; set; } = new List<Order>();
+    public Order Order { get; set; } // Relación inversa.
 }

@@ -35,4 +35,11 @@ public class CartRepository : GenericRepository<Cart>, ICartRepository
             await _context.SaveChangesAsync(ct);
         }
     }
+
+    public async Task<IEnumerable<Cart>> GetExpiredCartsAsync(DateTime expiryDate, CancellationToken ct = default)
+    {
+        return await _context.Set<Cart>()
+            .Where(c => c.ExpiredAt <= expiryDate && c.ExpiredAt != null)
+            .ToListAsync(ct);
+    }
 }

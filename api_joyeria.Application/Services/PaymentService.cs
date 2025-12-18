@@ -1,34 +1,45 @@
-﻿using api_joyeria.Application.DTOs;
-using api_joyeria.Application.Interfaces;
+﻿using api_joyeria.Application.Interfaces;
 using api_joyeria.Domain.Entities;
-using AutoMapper;
+using api_joyeria.Infrastructure.Repositories;
 
 namespace api_joyeria.Application.Services;
 
 public class PaymentService : IPaymentService
 {
-    private readonly IRepository<Payment> _paymentRepository;
-    private readonly IMapper _mapper;
+    private readonly IOrderRepository _orderRepo;
+    private readonly IPaymentRepository _paymentRepo;
 
-    public PaymentService(IRepository<Payment> paymentRepository, IMapper mapper)
+    public PaymentService(
+        IOrderRepository orderRepo,
+        IPaymentRepository paymentRepo)
     {
-        _paymentRepository = paymentRepository;
-        _mapper = mapper;
+        _orderRepo = orderRepo;
+        _paymentRepo = paymentRepo;
     }
 
-    public async Task<PaymentDto> CreatePaymentAsync(PaymentDto dto, CancellationToken ct = default)
+    public async Task ProcessPaymentAsync(
+        int orderId,
+        string method,
+        CancellationToken ct = default)
     {
-        var payment = _mapper.Map<Payment>(dto);
+        var order = await _orderRepo.GetByIdAsync(orderId, ct)
+            ?? throw new KeyNotFoundException("Orden no encontrada");
 
-        await _paymentRepository.AddAsync(payment, ct);
-        await _paymentRepository.SaveChangesAsync(ct);
+        if (order.Status == OrderStatus.Paid)
+            throw new InvalidOperationException("Orden ya pagada");
 
-        return _mapper.Map<PaymentDto>(payment);
-    }
+        var payment = new Payment
+        {
+            OrderId = order.Id,
+            Amount = order.Total,
+            PaymentMethod = method,
+            TransactionId = Guid.NewGuid().ToString(),
+            Status = "Success"
+        };
 
-    public async Task<PaymentDto?> GetPaymentByIdAsync(int id, CancellationToken ct = default)
-    {
-        var payment = await _paymentRepository.GetByIdAsync(id, ct);
-        return payment is null ? null : _mapper.Map<PaymentDto>(payment);
+        order.Status = OrderStatus.Paid;
+
+        await _paymentRepo.AddAsync(payment, ct);
+        await _paymentRepo.SaveChangesAsync(ct);
     }
 }

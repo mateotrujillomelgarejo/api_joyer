@@ -3,13 +3,12 @@
 public class Payment
 {
     public int Id { get; set; }
-
     public int OrderId { get; set; }
-    public Order? Order { get; set; } // Navigation property
+    public Order Order { get; set; } = null!;
 
-    public decimal Amount { get; set; } // Paid amount
+    public decimal Amount { get; set; }
     public string PaymentMethod { get; set; } = string.Empty;
     public string TransactionId { get; set; } = string.Empty;
     public DateTime PaidAt { get; set; } = DateTime.UtcNow;
-    public string Status { get; set; } = "Pending";
+    public string Status { get; set; } = "Pending"; // Payment status
 }
