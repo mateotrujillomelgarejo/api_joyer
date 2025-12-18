@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("api_joyeria.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18f9abac3098dcecc791a57c0703896b64a2b4d0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3891fd2822d2a8f3882f868f14385199d8f1ef2b")]
 [assembly: System.Reflection.AssemblyProductAttribute("api_joyeria.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("api_joyeria.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

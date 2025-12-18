@@ -12,6 +12,12 @@ public class Order
     public string State { get; set; } = string.Empty;
     public string Zip { get; set; } = string.Empty;
 
+
+    public int? CustomerId { get; set; }
+    public OrderCustomer? Customer { get; set; }
+
+    public int? ShippingAddressId { get; set; }
+    public ShippingAddress? ShippingAddress { get; set; }
     public decimal Total { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public ICollection<OrderItem> Items { get; set; } = new List<OrderItem>();

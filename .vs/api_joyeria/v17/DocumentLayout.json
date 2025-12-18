@@ -3,12 +3,88 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.domain\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|solutionrelative:api_joyeria.domain\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\dtos\\paymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\dtos\\paymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\interfaces\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\interfaces\\ipaymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433F391C-C2C0-4621-890B-E848050CE8C8}|api_joyeria.Api\\api_joyeria.Api.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433F391C-C2C0-4621-890B-E848050CE8C8}|api_joyeria.Api\\api_joyeria.Api.csproj|solutionrelative:api_joyeria.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.domain\\entities\\guesttoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|solutionrelative:api_joyeria.domain\\entities\\guesttoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}|api_joyeria.Infrastructure\\api_joyeria.Infrastructure.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.infrastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}|api_joyeria.Infrastructure\\api_joyeria.Infrastructure.csproj|solutionrelative:api_joyeria.infrastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.domain\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|solutionrelative:api_joyeria.domain\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{433F391C-C2C0-4621-890B-E848050CE8C8}|api_joyeria.Api\\api_joyeria.Api.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.api\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{433F391C-C2C0-4621-890B-E848050CE8C8}|api_joyeria.Api\\api_joyeria.Api.csproj|solutionrelative:api_joyeria.api\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\interfaces\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\interfaces\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\interfaces\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\interfaces\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}|api_joyeria.Infrastructure\\api_joyeria.Infrastructure.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.infrastructure\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}|api_joyeria.Infrastructure\\api_joyeria.Infrastructure.csproj|solutionrelative:api_joyeria.infrastructure\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\dtos\\cartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\dtos\\cartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\interfaces\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\interfaces\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\dtos\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\dtos\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.domain\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|solutionrelative:api_joyeria.domain\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.domain\\entities\\ordercustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|solutionrelative:api_joyeria.domain\\entities\\ordercustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.domain\\entities\\shippingaddress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|solutionrelative:api_joyeria.domain\\entities\\shippingaddress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.domain\\entities\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|solutionrelative:api_joyeria.domain\\entities\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.domain\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|solutionrelative:api_joyeria.domain\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.domain\\entities\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|solutionrelative:api_joyeria.domain\\entities\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E2E4F20B-7F73-45D3-90B9-37DDD6752566}|api_joyeria.Domain\\api_joyeria.Domain.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.domain\\entities\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,10 +111,6 @@
       "RelativeMoniker": "D:0:0:{433F391C-C2C0-4621-890B-E848050CE8C8}|api_joyeria.Api\\api_joyeria.Api.csproj|solutionrelative:api_joyeria.api\\automapper\\ordermappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\interfaces\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\interfaces\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -55,16 +127,8 @@
       "RelativeMoniker": "D:0:0:{433F391C-C2C0-4621-890B-E848050CE8C8}|api_joyeria.Api\\api_joyeria.Api.csproj|solutionrelative:api_joyeria.api\\automapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}|api_joyeria.Infrastructure\\api_joyeria.Infrastructure.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.infrastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}|api_joyeria.Infrastructure\\api_joyeria.Infrastructure.csproj|solutionrelative:api_joyeria.infrastructure\\persistence\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}|api_joyeria.Infrastructure\\api_joyeria.Infrastructure.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.infrastructure\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120EAFC-BFAD-435B-9F7C-A6D72FFC2EA3}|api_joyeria.Infrastructure\\api_joyeria.Infrastructure.csproj|solutionrelative:api_joyeria.infrastructure\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\dtos\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|solutionrelative:api_joyeria.application\\dtos\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B1E60F98-F1FB-4DFB-9D5F-CDCD27F78EB7}|api_joyeria.Application\\api_joyeria.Application.csproj|c:\\users\\user\\desktop\\spring\\api_joyeria\\api_joyeria.application\\dtos\\guestcheckoutdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -78,115 +142,148 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Producto.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\Producto.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\Producto.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\Producto.cs",
-              "RelativeToolTip": "api_joyeria.Domain\\Entities\\Producto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T01:32:22.754Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ProductoServiceTests.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Tests\\ProductoServiceTests.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Tests\\ProductoServiceTests.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Tests\\ProductoServiceTests.cs",
-              "RelativeToolTip": "api_joyeria.Tests\\ProductoServiceTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T01:25:57.471Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "api_joyeria.Tests",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Tests\\api_joyeria.Tests.csproj",
-              "RelativeDocumentMoniker": "api_joyeria.Tests\\api_joyeria.Tests.csproj",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Tests\\api_joyeria.Tests.csproj",
-              "RelativeToolTip": "api_joyeria.Tests\\api_joyeria.Tests.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-16T01:25:54.598Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "OrderItem.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\OrderItem.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\OrderItem.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\OrderItem.cs",
-              "RelativeToolTip": "api_joyeria.Domain\\Entities\\OrderItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Title": "PaymentDto.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\DTOs\\PaymentDto.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Application\\DTOs\\PaymentDto.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\DTOs\\PaymentDto.cs",
+              "RelativeToolTip": "api_joyeria.Application\\DTOs\\PaymentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:39:30.465Z",
+              "WhenOpened": "2025-12-18T01:43:34.419Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Application\\Services\\PaymentService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\PaymentService.cs",
+              "RelativeToolTip": "api_joyeria.Application\\Services\\PaymentService.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAgwBIAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T01:42:55.102Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IPaymentService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\IPaymentService.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Application\\Interfaces\\IPaymentService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\IPaymentService.cs",
+              "RelativeToolTip": "api_joyeria.Application\\Interfaces\\IPaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T01:42:18.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Api\\Controllers\\PaymentController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "api_joyeria.Api\\Controllers\\PaymentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T01:41:46.412Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CartDto.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\DTOs\\CartDto.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Application\\DTOs\\CartDto.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\DTOs\\CartDto.cs",
+              "RelativeToolTip": "api_joyeria.Application\\DTOs\\CartDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T00:40:22.283Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\Persistence\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Infrastructure\\Persistence\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\Persistence\\ApplicationDbContext.cs",
+              "RelativeToolTip": "api_joyeria.Infrastructure\\Persistence\\ApplicationDbContext.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwCQAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T00:44:59.407Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\Order.cs",
               "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\Order.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\Order.cs",
               "RelativeToolTip": "api_joyeria.Domain\\Entities\\Order.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:38:44.054Z",
+              "WhenOpened": "2025-12-16T00:38:44.054Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CartService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\CartService.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Application\\Services\\CartService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\CartService.cs",
+              "RelativeToolTip": "api_joyeria.Application\\Services\\CartService.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAqwFoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T00:33:19.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GuestToken.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\GuestToken.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\GuestToken.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\GuestToken.cs",
+              "RelativeToolTip": "api_joyeria.Domain\\Entities\\GuestToken.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T00:30:49.645Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "OrderMappingProfile.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\AutoMapper\\OrderMappingProfile.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Api\\AutoMapper\\OrderMappingProfile.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\AutoMapper\\OrderMappingProfile.cs",
-              "RelativeToolTip": "api_joyeria.Api\\AutoMapper\\OrderMappingProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Api\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Controllers\\CartController.cs",
+              "RelativeToolTip": "api_joyeria.Api\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAADwvyAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:47:31.915Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CheckoutController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Controllers\\CheckoutController.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Api\\Controllers\\CheckoutController.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Controllers\\CheckoutController.cs",
-              "RelativeToolTip": "api_joyeria.Api\\Controllers\\CheckoutController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:48:03.671Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Program.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Api\\Program.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Program.cs",
-              "RelativeToolTip": "api_joyeria.Api\\Program.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAABoAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:56:54.449Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-18T00:32:46.856Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "ICartService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\ICartService.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Application\\Interfaces\\ICartService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\ICartService.cs",
+              "RelativeToolTip": "api_joyeria.Application\\Interfaces\\ICartService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T00:34:48.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "IOrderRepository.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\IOrderRepository.cs",
               "RelativeDocumentMoniker": "api_joyeria.Application\\Interfaces\\IOrderRepository.cs",
@@ -194,87 +291,23 @@
               "RelativeToolTip": "api_joyeria.Application\\Interfaces\\IOrderRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:56:21.091Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T00:56:21.091Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ProductoService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\ProductoService.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Application\\Services\\ProductoService.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\ProductoService.cs",
-              "RelativeToolTip": "api_joyeria.Application\\Services\\ProductoService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 17,
+              "Title": "ShippingAddress.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\ShippingAddress.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\ShippingAddress.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\ShippingAddress.cs",
+              "RelativeToolTip": "api_joyeria.Domain\\Entities\\ShippingAddress.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:55:22.945Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "OrderService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\OrderService.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Application\\Services\\OrderService.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\OrderService.cs",
-              "RelativeToolTip": "api_joyeria.Application\\Services\\OrderService.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAowAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:46:06.647Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IOrderService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\IOrderService.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Application\\Interfaces\\IOrderService.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\IOrderService.cs",
-              "RelativeToolTip": "api_joyeria.Application\\Interfaces\\IOrderService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:43:04.647Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\AutoMapper\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Api\\AutoMapper\\MappingProfile.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\AutoMapper\\MappingProfile.cs",
-              "RelativeToolTip": "api_joyeria.Api\\AutoMapper\\MappingProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:47:01.262Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\Persistence\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Infrastructure\\Persistence\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\Persistence\\ApplicationDbContext.cs",
-              "RelativeToolTip": "api_joyeria.Infrastructure\\Persistence\\ApplicationDbContext.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAcwBgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:44:59.407Z"
+              "WhenOpened": "2025-12-18T00:29:28.041Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "OrderRepository.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\Repositories\\OrderRepository.cs",
-              "RelativeDocumentMoniker": "api_joyeria.Infrastructure\\Repositories\\OrderRepository.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\Repositories\\OrderRepository.cs",
-              "RelativeToolTip": "api_joyeria.Infrastructure\\Repositories\\OrderRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T00:44:18.84Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
               "Title": "OrderDto.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\DTOs\\OrderDto.cs",
               "RelativeDocumentMoniker": "api_joyeria.Application\\DTOs\\OrderDto.cs",
@@ -286,7 +319,223 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CartRepository.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\Repositories\\CartRepository.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Infrastructure\\Repositories\\CartRepository.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\Repositories\\CartRepository.cs",
+              "RelativeToolTip": "api_joyeria.Infrastructure\\Repositories\\CartRepository.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAA9wCUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T00:41:44.883Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ICartRepository.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\ICartRepository.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Application\\Interfaces\\ICartRepository.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\ICartRepository.cs",
+              "RelativeToolTip": "api_joyeria.Application\\Interfaces\\ICartRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T00:41:06.112Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "OrderItem.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\OrderItem.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\OrderItem.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\OrderItem.cs",
+              "RelativeToolTip": "api_joyeria.Domain\\Entities\\OrderItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T00:39:30.465Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 16,
+              "Title": "OrderCustomer.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\OrderCustomer.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\OrderCustomer.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\OrderCustomer.cs",
+              "RelativeToolTip": "api_joyeria.Domain\\Entities\\OrderCustomer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T00:28:38.198Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\Payment.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\Payment.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\Payment.cs",
+              "RelativeToolTip": "api_joyeria.Domain\\Entities\\Payment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T00:30:06.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\CartItem.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\CartItem.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\CartItem.cs",
+              "RelativeToolTip": "api_joyeria.Domain\\Entities\\CartItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T00:27:31.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\Cart.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\Cart.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\Cart.cs",
+              "RelativeToolTip": "api_joyeria.Domain\\Entities\\Cart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T00:26:04.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "api_joyeria.Tests.csproj",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Tests\\api_joyeria.Tests.csproj",
+              "RelativeDocumentMoniker": "api_joyeria.Tests\\api_joyeria.Tests.csproj",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Tests\\api_joyeria.Tests.csproj",
+              "RelativeToolTip": "api_joyeria.Tests\\api_joyeria.Tests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-16T01:25:54.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ProductoServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Tests\\ProductoServiceTests.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Tests\\ProductoServiceTests.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Tests\\ProductoServiceTests.cs",
+              "RelativeToolTip": "api_joyeria.Tests\\ProductoServiceTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T01:25:57.471Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Producto.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\Producto.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Domain\\Entities\\Producto.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Domain\\Entities\\Producto.cs",
+              "RelativeToolTip": "api_joyeria.Domain\\Entities\\Producto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T01:32:22.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "OrderMappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\AutoMapper\\OrderMappingProfile.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Api\\AutoMapper\\OrderMappingProfile.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\AutoMapper\\OrderMappingProfile.cs",
+              "RelativeToolTip": "api_joyeria.Api\\AutoMapper\\OrderMappingProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T00:47:31.915Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "CheckoutController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Controllers\\CheckoutController.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Api\\Controllers\\CheckoutController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Controllers\\CheckoutController.cs",
+              "RelativeToolTip": "api_joyeria.Api\\Controllers\\CheckoutController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T00:48:03.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Program.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\Program.cs",
+              "RelativeToolTip": "api_joyeria.Api\\Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T00:56:54.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ProductoService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\ProductoService.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Application\\Services\\ProductoService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\ProductoService.cs",
+              "RelativeToolTip": "api_joyeria.Application\\Services\\ProductoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T00:55:22.945Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\OrderService.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Application\\Services\\OrderService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Services\\OrderService.cs",
+              "RelativeToolTip": "api_joyeria.Application\\Services\\OrderService.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAowAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T00:46:06.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "IOrderService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\IOrderService.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Application\\Interfaces\\IOrderService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\Interfaces\\IOrderService.cs",
+              "RelativeToolTip": "api_joyeria.Application\\Interfaces\\IOrderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T00:43:04.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\AutoMapper\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Api\\AutoMapper\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\AutoMapper\\MappingProfile.cs",
+              "RelativeToolTip": "api_joyeria.Api\\AutoMapper\\MappingProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T00:47:01.262Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\Repositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "api_joyeria.Infrastructure\\Repositories\\OrderRepository.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\Repositories\\OrderRepository.cs",
+              "RelativeToolTip": "api_joyeria.Infrastructure\\Repositories\\OrderRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T00:44:18.84Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
               "Title": "GuestCheckoutDto.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\DTOs\\GuestCheckoutDto.cs",
               "RelativeDocumentMoniker": "api_joyeria.Application\\DTOs\\GuestCheckoutDto.cs",
