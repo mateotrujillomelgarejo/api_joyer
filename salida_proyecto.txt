@@ -1,0 +1,65 @@
+using api_joyeria.Domain.Entities;
+
+public class Cart
+{
+    public Guid Id { get; set; }
+    public DateTime ExpirationDate { get; set; }
+    public string GuestToken { get; set; } // Token asociado al carrito
+    public List<CartItem> Items { get; set; } = new();
+    public decimal Total => Items.Sum(item => item.Quantity * item.Price);
+}
+
+namespace api_joyeria.Domain.Entities;
+
+public class CartItem
+{
+    public int Id { get; set; }
+    public int CartId { get; set; } // Foreign key to the Cart
+    public Cart? Cart { get; set; } // Navigation property
+
+    public int ProductId { get; set; } // Reference to the product
+    public string ProductName { get; set; } = string.Empty; // Name of the product
+    public decimal UnitPrice { get; set; } // Price per unit of the product
+    public int Quantity { get; set; } // Quantity of the product in the cart
+    public decimal Subtotal => UnitPrice * Quantity; // Calculate subtotal
+}
+
+namespace api_joyeria.Domain.Entities;
+
+public class GuestToken
+{
+    public string Token { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime ExpirationDate { get; set; }
+}
+
+using System.Collections.Generic;
+
+namespace api_joyeria.Domain.Entities;
+
+..[optimized content follows as in the user provided response]... 
+
+
+// Updating DbContext
+
+using Microsoft.EntityFrameworkCore;
+using api_joyeria.Domain.Entities;
+
+namespace api_joyeria.Infrastructure.Persistence;
+
+public class ApplicationDbContext : DbContext
+{
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options) { }
+
+    public DbSet<Producto> Productos { get; set; } = null!;
+    public DbSet<Order> Orders { get; set; } = null!;
+    public DbSet<OrderItem> OrderItems { get; set; } = null!;
+    public DbSet<Payment> Payments { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        // Producto...
+        ..and base domain-pack familiar optimized alongside this without redundant boilerplate.balance finalizations.
