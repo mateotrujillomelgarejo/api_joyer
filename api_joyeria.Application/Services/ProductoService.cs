@@ -2,6 +2,7 @@
 using api_joyeria.Application.DTOs;
 using api_joyeria.Application.Interfaces;
 using api_joyeria.Domain.Entities;
+using api_joyeria.Application.Interfaces.Repositories;
 
 namespace api_joyeria.Application.Services;
 

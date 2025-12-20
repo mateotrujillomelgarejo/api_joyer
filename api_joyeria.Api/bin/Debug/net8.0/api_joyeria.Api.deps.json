@@ -751,6 +751,7 @@
       "api_joyeria.Application/1.0.0": {
         "dependencies": {
           "AutoMapper": "12.0.1",
+          "Microsoft.EntityFrameworkCore": "8.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
           "api_joyeria.Domain": "1.0.0"
         },

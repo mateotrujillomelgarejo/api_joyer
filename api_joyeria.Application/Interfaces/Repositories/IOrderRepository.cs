@@ -1,6 +1,6 @@
 ﻿using api_joyeria.Domain.Entities;
 
-namespace api_joyeria.Application.Interfaces;
+namespace api_joyeria.Application.Interfaces.Repositories;
 
 public interface IOrderRepository
 {

@@ -28,19 +28,19 @@
   {
     "ContainingType": "api_joyeria.Api.Controllers.CartController",
     "Method": "AddItem",
-    "RelativePath": "api/cart/{cartId}/items",
+    "RelativePath": "api/cart/{guestToken}/items",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "cartId",
-        "Type": "System.Int32",
+        "Name": "guestToken",
+        "Type": "System.String",
         "IsRequired": true
       },
       {
         "Name": "dto",
-        "Type": "api_joyeria.Application.DTOs.CartItemDto",
+        "Type": "api_joyeria.Application.DTOs.AddCartItemRequestDto",
         "IsRequired": true
       }
     ],
@@ -49,14 +49,14 @@
   {
     "ContainingType": "api_joyeria.Api.Controllers.CartController",
     "Method": "ClearCart",
-    "RelativePath": "api/cart/{cartId}/items",
+    "RelativePath": "api/cart/{guestToken}/items",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "cartId",
-        "Type": "System.Int32",
+        "Name": "guestToken",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -65,14 +65,14 @@
   {
     "ContainingType": "api_joyeria.Api.Controllers.CartController",
     "Method": "RemoveItem",
-    "RelativePath": "api/cart/{cartId}/items/{itemId}",
+    "RelativePath": "api/cart/{guestToken}/items/{itemId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "cartId",
-        "Type": "System.Int32",
+        "Name": "guestToken",
+        "Type": "System.String",
         "IsRequired": true
       },
       {
@@ -102,14 +102,46 @@
   {
     "ContainingType": "api_joyeria.Api.Controllers.CheckoutController",
     "Method": "StartCheckout",
-    "RelativePath": "api/checkout",
+    "RelativePath": "api/checkout/start",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "api_joyeria.Application.DTOs.GuestCheckoutDto",
+        "Type": "api_joyeria.Application.DTOs.Checkout.CheckoutStartRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_joyeria.Api.Controllers.CheckoutController",
+    "Method": "GetOrder",
+    "RelativePath": "api/orders/{orderId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_joyeria.Api.Controllers.CheckoutController",
+    "Method": "CreateOrder",
+    "RelativePath": "api/orders/guest",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "api_joyeria.Application.DTOs.CheckoutRequestDto",
         "IsRequired": true
       }
     ],
@@ -130,10 +162,20 @@
       },
       {
         "Name": "dto",
-        "Type": "api_joyeria.Application.DTOs.PaymentDto",
+        "Type": "api_joyeria.Application.DTOs.Payment.PaymentRequestDto",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_joyeria.Api.Controllers.IzipayWebhookController",
+    "Method": "Webhook",
+    "RelativePath": "api/payments/izipay/webhook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using api_joyeria.Application.Interfaces;
-using api_joyeria.Application.DTOs;
+using api_joyeria.Application.DTOs.Payment;
+using api_joyeria.Application.Interfaces.Services;
 
 namespace api_joyeria.Api.Controllers;
 
@@ -16,9 +16,14 @@ public class PaymentController : ControllerBase
     }
 
     [HttpPost("{orderId:int}")]
-    public async Task<IActionResult> Pay(int orderId, [FromBody] PaymentDto dto)
+    public async Task<IActionResult> Pay(int orderId, [FromBody] PaymentRequestDto dto)
     {
-        await _paymentService.ProcessPaymentAsync(orderId, dto.Method);
-        return Ok(new { message = "Pago realizado con éxito" });
+        var idempotencyKey = Request.Headers["Idempotency-Key"].ToString();
+        if (string.IsNullOrWhiteSpace(idempotencyKey))
+            return BadRequest("Missing Idempotency-Key header");
+
+        var result = await _paymentService.ProcessPaymentAsync(orderId, dto.Method, idempotencyKey);
+        return Ok(result);
     }
+
 }

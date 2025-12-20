@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using api_joyeria.Application.Interfaces;
 using api_joyeria.Application.DTOs;
+using api_joyeria.Application.Interfaces.Services;
 
 namespace api_joyeria.Api.Controllers;
 
@@ -38,24 +38,26 @@ public class CartController : ControllerBase
         return Ok(cart);
     }
 
-    [HttpPost("{cartId:int}/items")]
-    public async Task<IActionResult> AddItem(int cartId, [FromBody] CartItemDto dto)
+    [HttpPost("{guestToken}/items")]
+    public async Task<IActionResult> AddItem(string guestToken, [FromBody] AddCartItemRequestDto dto)
     {
-        var cart = await _cartService.AddItemToCartAsync(cartId, dto);
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var cart = await _cartService.AddItemToCartAsync(guestToken, dto);
         return Ok(cart);
     }
 
-    [HttpDelete("{cartId:int}/items/{itemId:int}")]
-    public async Task<IActionResult> RemoveItem(int cartId, int itemId)
+    [HttpDelete("{guestToken}/items/{itemId:int}")]
+    public async Task<IActionResult> RemoveItem(string guestToken, int itemId)
     {
-        await _cartService.RemoveItemFromCartAsync(cartId, itemId);
+        await _cartService.RemoveItemFromCartAsync(guestToken, itemId);
         return NoContent();
     }
 
-    [HttpDelete("{cartId:int}/items")]
-    public async Task<IActionResult> ClearCart(int cartId)
+    [HttpDelete("{guestToken}/items")]
+    public async Task<IActionResult> ClearCart(string guestToken)
     {
-        await _cartService.ClearCartAsync(cartId);
+        await _cartService.ClearCartAsync(guestToken);
         return NoContent();
     }
 }

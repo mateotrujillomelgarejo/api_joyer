@@ -1,5 +1,8 @@
 ﻿using api_joyeria.Application.DTOs;
+using api_joyeria.Application.DTOs.Checkout;
 using api_joyeria.Application.Interfaces;
+using api_joyeria.Application.Interfaces.Repositories;
+using api_joyeria.Application.Interfaces.Services;
 using api_joyeria.Domain.Entities;
 
 namespace api_joyeria.Application.Services;
@@ -58,10 +61,10 @@ public class CartService : ICartService
             ExpiredAt = cart.ExpiredAt,
             Items = cart.Items.Select(i => new CartItemDto
             {
-                CartId = i.CartId,
+                Id = i.Id,
                 ProductId = i.ProductId,
-                ProductName = string.Empty,
-                UnitPrice = i.Price,
+                ProductName = i.ProductName,
+                UnitPrice = i.UnitPrice,
                 Quantity = i.Quantity
             }).ToList()
         };
@@ -84,10 +87,10 @@ public class CartService : ICartService
             ExpiredAt = cart.ExpiredAt,
             Items = cart.Items.Select(i => new CartItemDto
             {
-                CartId = i.CartId,
+                Id = i.Id,
                 ProductId = i.ProductId,
-                ProductName = string.Empty,
-                UnitPrice = i.Price,
+                ProductName = i.ProductName,
+                UnitPrice = i.UnitPrice,
                 Quantity = i.Quantity
             }).ToList()
         };
@@ -104,9 +107,10 @@ public class CartService : ICartService
             ExpiredAt = c.ExpiredAt,
             Items = c.Items.Select(i => new CartItemDto
             {
-                CartId = i.CartId,
+                Id = i.Id,
                 ProductId = i.ProductId,
-                UnitPrice = i.Price,
+                ProductName = i.ProductName,
+                UnitPrice = i.UnitPrice,
                 Quantity = i.Quantity
             }).ToList()
         });
@@ -115,40 +119,33 @@ public class CartService : ICartService
     public async Task ExpireCartAsync(int cartId, CancellationToken ct = default)
         => await _cartRepository.ExpireCartAsync(cartId, ct);
 
-    public async Task<CartDto> AddItemToCartAsync(int cartId, CartItemDto itemDto)
+    public async Task<CartDto> AddItemToCartAsync(string guestToken, AddCartItemRequestDto dto)
     {
-        var cart = await _cartRepository.GetByIdAsync(cartId);
-        if (cart == null) throw new KeyNotFoundException("Cart not found");
+        var cart = await _cartRepository.GetCartByTokenAsync(guestToken);
+        if (cart == null)
+            throw new KeyNotFoundException("Cart not found");
 
-        var product = await _productoRepository.GetByIdAsync(itemDto.ProductId);
-        if (product == null) throw new KeyNotFoundException("Product not found");
-        if (product.Stock < itemDto.Quantity) throw new InvalidOperationException("Stock insuficiente");
+        if (cart.ExpiredAt.HasValue && cart.ExpiredAt.Value <= DateTime.UtcNow)
+            throw new InvalidOperationException("Cart expirado");
 
-        var existing = cart.Items.FirstOrDefault(i => i.ProductId == itemDto.ProductId);
-        if (existing != null)
-        {
-            existing.Quantity += itemDto.Quantity;
-        }
-        else
-        {
-            cart.Items.Add(new CartItem
-            {
-                CartId = cart.Id,
-                ProductId = itemDto.ProductId,
-                Quantity = itemDto.Quantity,
-                Price = product.Precio
-            });
-        }
+        var product = await _productoRepository.GetByIdAsync(dto.ProductId);
+        if (product == null)
+            throw new KeyNotFoundException("Producto no existe");
 
-        _cartRepository.Update(cart);
+        if (product.Stock < dto.Quantity)
+            throw new InvalidOperationException("Stock insuficiente");
+
+        // Use domain method to keep invariants
+        cart.AddOrUpdateItem(product.Id, product.Nombre, product.UnitPrice, dto.Quantity);
+
         await _cartRepository.SaveChangesAsync();
 
-        return await GetCartByIdAsync(cart.Id);
+        return await GetCartByTokenInternal(guestToken, default);
     }
 
-    public async Task RemoveItemFromCartAsync(int cartId, int itemId, CancellationToken ct = default)
+    public async Task RemoveItemFromCartAsync(string guestToken, int itemId, CancellationToken ct = default)
     {
-        var cart = await _cartRepository.GetByIdAsync(cartId, ct);
+        var cart = await _cartRepository.GetCartByTokenAsync(guestToken, ct);
         if (cart == null) throw new KeyNotFoundException("Cart not found");
 
         var item = cart.Items.FirstOrDefault(i => i.Id == itemId);
@@ -159,9 +156,9 @@ public class CartService : ICartService
         await _cartRepository.SaveChangesAsync(ct);
     }
 
-    public async Task ClearCartAsync(int cartId, CancellationToken ct = default)
+    public async Task ClearCartAsync(string guestToken, CancellationToken ct = default)
     {
-        var cart = await _cartRepository.GetByIdAsync(cartId, ct);
+        var cart = await _cartRepository.GetCartByTokenAsync(guestToken, ct);
         if (cart == null) return;
 
         cart.Items.Clear();
@@ -183,5 +180,51 @@ public class CartService : ICartService
         }
 
         return cartDto;
+    }
+
+    public async Task StartCheckoutAsync(
+        string guestToken,
+        CheckoutStartRequestDto dto,
+        CancellationToken ct = default)
+    {
+        // 1. Buscar carrito por guestToken
+        var cart = await _cartRepository.GetCartByTokenAsync(guestToken, ct);
+        if (cart == null)
+            throw new KeyNotFoundException("Cart no encontrado");
+
+        // 2. Verificar expiración
+        if (cart.ExpiredAt.HasValue && cart.ExpiredAt.Value <= DateTime.UtcNow)
+            throw new InvalidOperationException("Cart expirado");
+
+        // 3. Verificar que no esté ya en checkout
+        if (cart.IsInCheckout)
+            throw new InvalidOperationException("Checkout ya iniciado para este carrito");
+
+        // 4. Marcar estado de checkout
+        cart.IsInCheckout = true;
+        cart.CheckoutStartedAt = DateTime.UtcNow;
+
+        // 5. Guardar datos guest (provisionales)
+        if (!string.IsNullOrWhiteSpace(dto.GuestEmail))
+            cart.GuestEmail = dto.GuestEmail;
+
+        if (dto.ShippingAddress != null)
+        {
+            cart.ShippingAddress = new ShippingAddress
+            {
+                Street = dto.ShippingAddress.Street,
+                City = dto.ShippingAddress.City,
+                State = dto.ShippingAddress.State,
+                ZipCode = dto.ShippingAddress.ZipCode,
+                Country = dto.ShippingAddress.Country,
+                Phone = dto.ShippingAddress.Phone
+            };
+        }
+
+        // 6. (Opcional) Hook para reservas de stock
+        // ReserveStock(cart.Items);
+
+        // 7. Persistir todo en una sola operación
+        await _cartRepository.SaveChangesAsync(ct);
     }
 }

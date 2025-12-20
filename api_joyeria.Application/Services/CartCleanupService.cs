@@ -1,4 +1,4 @@
-﻿using api_joyeria.Application.Interfaces;
+﻿using api_joyeria.Application.Interfaces.Repositories;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 

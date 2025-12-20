@@ -1,4 +1,6 @@
-﻿namespace api_joyeria.Application.Interfaces;
+﻿using api_joyeria.Domain.Entities;
+
+namespace api_joyeria.Application.Interfaces.Repositories;
 
 public interface ICartRepository : IRepository<Cart>
 {

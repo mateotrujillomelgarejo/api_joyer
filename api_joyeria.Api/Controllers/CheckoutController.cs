@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using api_joyeria.Application.Interfaces;
 using api_joyeria.Application.DTOs;
+using api_joyeria.Application.DTOs.Checkout;
+using api_joyeria.Application.Interfaces.Services;
 
 namespace api_joyeria.Api.Controllers;
 
@@ -17,27 +19,34 @@ public class CheckoutController : ControllerBase
         _orderService = orderService;
     }
 
-    [HttpPost]
-    public async Task<IActionResult> StartCheckout([FromBody] GuestCheckoutDto dto)
+    [HttpPost("start")]
+    public async Task<IActionResult> StartCheckout([FromBody] CheckoutStartRequestDto dto)
     {
-        // Buscar carrito por token
-        var cart = await _cartService.GetCartByTokenAsync(dto.GuestToken);
+        // dto includes GuestToken, optional Shipping and IdempotencyKey if you want
+        // Validate cart and mark status = CHECKOUT_STARTED, set CheckoutStartedAt
+        await _cartService.StartCheckoutAsync(dto.GuestToken, dto); // new method
+        return Ok(new { message = "Checkout started" });
+    }
 
-        if (cart == null || cart.Items.Count == 0)
-            return BadRequest("Cart is empty");
+    [HttpPost("/api/orders/guest")]
+    public async Task<IActionResult> CreateOrder([FromBody] CheckoutRequestDto dto)
+    {
+        var idempotencyKey = Request.Headers["Idempotency-Key"].ToString();
+        if (string.IsNullOrWhiteSpace(idempotencyKey)) return BadRequest("Missing Idempotency-Key header");
 
-        // Mapear GuestCheckoutDto -> CheckoutDetailsDto (solo los datos de checkout)
-        var details = new CheckoutDetailsDto
-        {
-            GuestName = dto.GuestName,
-            GuestEmail = dto.GuestEmail,
-            Street = dto.Street,
-            City = dto.City,
-            State = dto.State,
-            Zip = dto.Zip
-        };
+        var order = await _orderService.CreateOrderFromCartAsync(dto.GuestToken, dto, idempotencyKey);
+        return CreatedAtAction(nameof(GetOrder), new { orderId = order.Id }, order);
+    }
 
-        var order = await _orderService.CreateOrderFromCartAsync(cart.Id, details);
+    [HttpGet("/api/orders/{orderId}")]
+    public async Task<IActionResult> GetOrder(int orderId)
+    {
+        var order = await _orderService.GetByIdAsync(orderId);
+
+        if (order == null)
+            return NotFound();
+
         return Ok(order);
     }
+
 }

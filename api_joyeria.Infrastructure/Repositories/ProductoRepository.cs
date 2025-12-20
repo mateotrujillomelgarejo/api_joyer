@@ -1,4 +1,4 @@
-﻿using api_joyeria.Application.Interfaces;
+﻿using api_joyeria.Application.Interfaces.Repositories;
 using api_joyeria.Domain.Entities;
 using api_joyeria.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
