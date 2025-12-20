@@ -2,8 +2,8 @@
 
 public class OrderCustomer
 {
-    public Guid Id { get; set; } // ID único.
-    public Guid OrderId { get; set; } // Relacionado con la orden.
+    public int Id { get; set; } // ID único.
+    public int OrderId { get; set; } // Relacionado con la orden.
     public string FullName { get; set; } // Nombre y apellido del cliente.
     public string Phone { get; set; } // Teléfono contacto o envío.
 

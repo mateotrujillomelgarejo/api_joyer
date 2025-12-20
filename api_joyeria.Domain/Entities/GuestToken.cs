@@ -2,7 +2,7 @@
 
 public class GuestToken
 {
-    public string Token { get; set; } = string.Empty; // Unique identifier
+    public string Token { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
     public DateTime ExpirationDate { get; set; }
 }

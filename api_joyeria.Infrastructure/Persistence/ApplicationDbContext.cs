@@ -35,11 +35,12 @@ public class ApplicationDbContext : DbContext
             entity.HasKey(c => c.Id);
             entity.Property(c => c.GuestToken).IsRequired().HasMaxLength(100);
             entity.Property(c => c.CreatedAt).IsRequired();
-            entity.Property(c => c.ExpiryDate).IsRequired();
+            entity.Property(c => c.ExpiredAt);
 
             entity.HasMany(c => c.Items)
-                  .WithOne()
-                  .HasForeignKey(i => i.CartId);
+                .WithOne(i => i.Cart)
+                .HasForeignKey(i => i.CartId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         // CartItem
@@ -55,7 +56,7 @@ public class ApplicationDbContext : DbContext
             entity.HasKey(o => o.Id);
             entity.Property(o => o.OrderNumber).IsRequired().HasMaxLength(50);
             entity.Property(o => o.GuestEmail).IsRequired().HasMaxLength(200);
-            entity.Property(o => o.TotalAmount).HasColumnType("decimal(18,2)");
+            entity.Property(o => o.Total).HasColumnType("decimal(18,2)");
             entity.Property(o => o.Status).IsRequired();
             entity.Property(o => o.CreatedAt).IsRequired();
 
@@ -65,10 +66,7 @@ public class ApplicationDbContext : DbContext
 
             entity.HasOne(o => o.Customer)
                   .WithOne(c => c.Order)
-                  .HasForeignKey<OrderCustomer>(c => c.OrderId);
-
-            entity.HasOne(o => o.Customer)
-                  .WithOne(c => c.Order)
+                  .HasForeignKey<OrderCustomer>(c => c.OrderId)
                   .OnDelete(DeleteBehavior.Cascade);
         });
 

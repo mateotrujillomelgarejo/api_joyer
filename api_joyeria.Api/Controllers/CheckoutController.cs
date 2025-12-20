@@ -2,7 +2,6 @@
 using api_joyeria.Application.Interfaces;
 using api_joyeria.Application.DTOs;
 
-
 namespace api_joyeria.Api.Controllers;
 
 [ApiController]
@@ -21,12 +20,24 @@ public class CheckoutController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> StartCheckout([FromBody] GuestCheckoutDto dto)
     {
+        // Buscar carrito por token
         var cart = await _cartService.GetCartByTokenAsync(dto.GuestToken);
 
         if (cart == null || cart.Items.Count == 0)
             return BadRequest("Cart is empty");
 
-        var order = await _orderService.CreateOrderFromCartAsync(cart.Id, dto);
+        // Mapear GuestCheckoutDto -> CheckoutDetailsDto (solo los datos de checkout)
+        var details = new CheckoutDetailsDto
+        {
+            GuestName = dto.GuestName,
+            GuestEmail = dto.GuestEmail,
+            Street = dto.Street,
+            City = dto.City,
+            State = dto.State,
+            Zip = dto.Zip
+        };
+
+        var order = await _orderService.CreateOrderFromCartAsync(cart.Id, details);
         return Ok(order);
     }
 }

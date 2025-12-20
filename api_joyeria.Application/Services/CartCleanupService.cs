@@ -1,18 +1,35 @@
 ﻿using api_joyeria.Application.Interfaces;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace api_joyeria.Application.Services;
 
-public class CartCleanupService
+public class CartCleanupService : BackgroundService
 {
-    private readonly ICartRepository _cartRepository;
+    private readonly ICartRepository _cartRepo;
+    private readonly ILogger<CartCleanupService> _logger;
+    private readonly TimeSpan _period = TimeSpan.FromMinutes(30);
 
-    public CartCleanupService(ICartRepository cartRepository)
+    public CartCleanupService(ICartRepository cartRepo, ILogger<CartCleanupService> logger)
     {
-        _cartRepository = cartRepository;
+        _cartRepo = cartRepo;
+        _logger = logger;
     }
 
-    public async Task CleanExpiredCartsAsync()
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await _cartRepository.DeleteExpiredAsync(DateTime.UtcNow);
+        _logger.LogInformation("CartCleanupService started");
+        while (!stoppingToken.IsCancellationRequested)
+        {
+            try
+            {
+                await _cartRepo.DeleteExpiredAsync(DateTime.UtcNow, stoppingToken);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error cleaning expired carts");
+            }
+            await Task.Delay(_period, stoppingToken);
+        }
     }
 }

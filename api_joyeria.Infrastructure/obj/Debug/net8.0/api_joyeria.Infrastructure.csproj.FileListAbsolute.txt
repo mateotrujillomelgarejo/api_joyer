@@ -1,5 +1,4 @@
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\bin\Debug\net8.0\api_joyeria.Infrastructure.deps.json
-C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\bin\Debug\net8.0\api_joyeria.Infrastructure.runtimeconfig.json
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\bin\Debug\net8.0\api_joyeria.Infrastructure.dll
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\bin\Debug\net8.0\api_joyeria.Infrastructure.pdb
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\bin\Debug\net8.0\api_joyeria.Application.dll
@@ -16,5 +15,4 @@ C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\obj\Debug\ne
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\obj\Debug\net8.0\api_joyeria.Infrastructure.dll
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\obj\Debug\net8.0\refint\api_joyeria.Infrastructure.dll
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\obj\Debug\net8.0\api_joyeria.Infrastructure.pdb
-C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\obj\Debug\net8.0\api_joyeria.Infrastructure.genruntimeconfig.cache
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Infrastructure\obj\Debug\net8.0\ref\api_joyeria.Infrastructure.dll

@@ -8,5 +8,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\api_joyeria.Domain\api_joyeria.Domain.csproj" />
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
 	</ItemGroup>
 </Project>
