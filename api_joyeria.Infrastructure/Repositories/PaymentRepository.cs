@@ -1,31 +1,35 @@
-﻿using api_joyeria.Application.Interfaces.Repositories;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using api_joyeria.Application.Interfaces.Repositories;
 using api_joyeria.Domain.Entities;
 using api_joyeria.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
 
-namespace api_joyeria.Infrastructure.Repositories;
-
-public class PaymentRepository : IPaymentRepository
+namespace api_joyeria.Infrastructure.Repositories
 {
-    private readonly ApplicationDbContext _ctx;
-
-    public PaymentRepository(ApplicationDbContext ctx)
+    public class PaymentRepository : IPaymentRepository
     {
-        _ctx = ctx;
-    }
+        private readonly ApplicationDbContext _ctx;
 
-    public async Task AddAsync(Payment payment, CancellationToken ct = default)
-    {
-        await _ctx.Set<Payment>().AddAsync(payment, ct);
-    }
+        public PaymentRepository(ApplicationDbContext ctx)
+        {
+            _ctx = ctx;
+        }
 
-    public Task<int> SaveChangesAsync(CancellationToken ct = default)
-        => _ctx.SaveChangesAsync(ct);
+        public async Task AddAsync(Payment payment, CancellationToken cancellationToken = default)
+        {
+            await _ctx.Payments.AddAsync(payment, cancellationToken);
+        }
 
-    public void Update(Payment payment) => _ctx.Payments.Update(payment);
+        public async Task<Payment> GetByReferenceAsync(string reference, CancellationToken cancellationToken = default)
+        {
+            return await _ctx.Payments.FirstOrDefaultAsync(p => p.Reference == reference, cancellationToken);
+        }
 
-    public async Task<Payment?> FindByTransactionIdAsync(string transactionId, CancellationToken ct = default)
-    {
-        return await _ctx.Set<Payment>().FirstOrDefaultAsync(p => p.TransactionId == transactionId, ct);
+        public Task UpdateAsync(Payment payment, CancellationToken cancellationToken = default)
+        {
+            _ctx.Payments.Update(payment);
+            return Task.CompletedTask;
+        }
     }
 }

@@ -1,45 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using api_joyeria.Application.Interfaces.Services;
+using api_joyeria.Application.Interfaces.Repositories;
 using api_joyeria.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
 
-namespace api_joyeria.Infrastructure.Services;
-
-public class DatabaseInventoryService : IInventoryService
+namespace api_joyeria.Infrastructure.Services
 {
-    private readonly ApplicationDbContext _ctx;
-    public DatabaseInventoryService(ApplicationDbContext ctx) => _ctx = ctx;
-
-    public async Task<bool> CheckAvailabilityAsync(IEnumerable<(int productId, int qty)> items, CancellationToken ct = default)
+    // Implementación técnica del inventario sobre la BD.
+    // No contiene reglas de negocio — sólo operaciones técnicas.
+    public class DatabaseInventoryService : IInventoryService
     {
-        var ids = items.Select(i => i.productId).Distinct().ToList();
-        var products = await _ctx.Productos.Where(p => ids.Contains(p.Id)).ToListAsync(ct);
-        foreach (var it in items)
-        {
-            var p = products.FirstOrDefault(x => x.Id == it.productId);
-            if (p == null || p.Stock < it.qty) return false;
-        }
-        return true;
-    }
+        private readonly IProductoRepository _productoRepository;
+        private readonly ApplicationDbContext _context;
 
-    public async Task ReserveOrDecrementAsync(IEnumerable<(int productId, int qty)> items, CancellationToken ct = default)
-    {
-        // Simple approach: decrement stock in DB. Requires being called inside a transaction for atomicity.
-        var ids = items.Select(i => i.productId).Distinct().ToList();
-        var products = await _ctx.Productos.Where(p => ids.Contains(p.Id)).ToListAsync(ct);
-
-        foreach (var it in items)
+        public DatabaseInventoryService(IProductoRepository productoRepository, ApplicationDbContext context)
         {
-            var p = products.FirstOrDefault(x => x.Id == it.productId)
-                ?? throw new KeyNotFoundException($"Product {it.productId} not found");
-            if (p.Stock < it.qty) throw new InvalidOperationException($"Insufficient stock for product {it.productId}");
-            p.Stock -= it.qty;
-            _ctx.Productos.Update(p);
+            _productoRepository = productoRepository ?? throw new ArgumentNullException(nameof(productoRepository));
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        // Note: SaveChanges should be handled by UnitOfWork/transaction caller
+
+        public async Task ValidateStockAsync(string productId, int requiredQuantity, CancellationToken cancellationToken = default)
+        {
+            var p = await _productoRepository.GetByIdAsync(productId, cancellationToken);
+            if (p == null) throw new InvalidOperationException($"Product {productId} not found");
+            if (!p.HasSufficientStock(requiredQuantity))
+                throw new InvalidOperationException($"Insufficient stock for product {productId}");
+        }
+
+        public Task ReserveStockAsync(string productId, int quantity, CancellationToken cancellationToken = default)
+        {
+            // Example: you may create a reservation row or decrement a reserved counter.
+            // Here we do nothing and leave reservation semantics to business decisions.
+            return Task.CompletedTask;
+        }
+
+        public async Task ReduceStockAsync(string productId, int quantity, CancellationToken cancellationToken = default)
+        {
+            var product = await _productoRepository.GetByIdAsync(productId, cancellationToken);
+            if (product == null) throw new InvalidOperationException($"Product {productId} not found");
+
+            product.ReduceStock(quantity);
+            // Persist change through DbContext
+            _context.Productos.Update(product);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 }

@@ -93,3 +93,8 @@ C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\obj\Debug\net8.0\api_jo
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\obj\Debug\net8.0\api_joyeria.Api.genruntimeconfig.cache
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\obj\Debug\net8.0\ref\api_joyeria.Api.dll
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\MediatR.dll
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll

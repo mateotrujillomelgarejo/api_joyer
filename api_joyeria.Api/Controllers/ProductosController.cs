@@ -1,49 +1,40 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using api_joyeria.Application.Interfaces;
-using api_joyeria.Application.DTOs;
+﻿using api_joyeria.Application.DTOs;
+using api_joyeria.Application.Interfaces.Repositories;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace api_joyeria.Api.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-public class ProductosController : ControllerBase
+namespace api_joyeria.Api.Controllers
 {
-    private readonly IProductoService _service;
-    public ProductosController(IProductoService service) => _service = service;
-
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ProductosController : ControllerBase
     {
-        var list = await _service.GetAllAsync();
-        return Ok(list);
-    }
+        private readonly IProductoRepository _productoRepository;
+        private readonly IMapper _mapper;
 
-    [HttpGet("{id:int}")]
-    public async Task<IActionResult> Get(int id)
-    {
-        var item = await _service.GetByIdAsync(id);
-        if (item == null) return NotFound();
-        return Ok(item);
-    }
+        public ProductosController(IProductoRepository productoRepository, IMapper mapper)
+        {
+            _productoRepository = productoRepository;
+            _mapper = mapper;
+        }
 
-    [HttpPost]
-    public async Task<IActionResult> Create([FromBody] ProductoDto dto)
-    {
-        var created = await _service.CreateAsync(dto);
-        return CreatedAtAction(nameof(Get), new { id = created.Id }, created);
-    }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProductoDto>>> GetAll()
+        {
+            var productos = await _productoRepository.GetAllAsync();
+            var dto = _mapper.Map<IEnumerable<ProductoDto>>(productos);
+            return Ok(dto);
+        }
 
-    [HttpPut("{id:int}")]
-    public async Task<IActionResult> Update(int id, [FromBody] ProductoDto dto)
-    {
-        await _service.UpdateAsync(id, dto);
-        return NoContent();
-    }
-
-    [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id)
-    {
-        await _service.DeleteAsync(id);
-        return NoContent();
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductoDto>> GetById(string id)
+        {
+            var p = await _productoRepository.GetByIdAsync(id);
+            if (p == null) return NotFound();
+            var dto = _mapper.Map<ProductoDto>(p);
+            return Ok(dto);
+        }
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using System.Text.Json;
 
 namespace api_joyeria.Application.Commands.Payments
 {
-    internal class ConfirmPaymentCommand
+    public class ConfirmPaymentCommand : IRequest
     {
+        public string PaymentReference { get; set; }
+        public string GatewayStatus { get; set; }
+        public string OrderId { get; set; }
+        public JsonElement Payload { get; set; }
     }
 }

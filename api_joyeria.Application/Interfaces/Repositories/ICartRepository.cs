@@ -1,12 +1,14 @@
-﻿using api_joyeria.Domain.Entities;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using api_joyeria.Domain.Entities;
 
-namespace api_joyeria.Application.Interfaces.Repositories;
-
-public interface ICartRepository : IRepository<Cart>
+namespace api_joyeria.Application.Interfaces.Repositories
 {
-    Task<IEnumerable<Cart>> GetActiveCartsAsync(CancellationToken ct = default);
-    Task<Cart?> GetCartByTokenAsync(string guestToken, CancellationToken ct = default);
-    Task ExpireCartAsync(int cartId, CancellationToken ct = default);
-    Task<IEnumerable<Cart>> GetExpiredCartsAsync(DateTime expiryDate, CancellationToken ct = default);
-    Task DeleteExpiredAsync(DateTime now, CancellationToken ct = default);
+    public interface ICartRepository
+    {
+        Task<Cart> GetByIdAsync(string cartId, CancellationToken cancellationToken = default);
+        // Opcional: Save/Update methods depend on infra design.
+        Task AddAsync(Cart cart, CancellationToken ct = default);
+        Task SaveChangesAsync(CancellationToken ct = default);
+    }
 }

@@ -1,52 +1,46 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using api_joyeria.Application.Interfaces;
-using api_joyeria.Application.DTOs;
+﻿using api_joyeria.Application.Commands.Checkout;
 using api_joyeria.Application.DTOs.Checkout;
-using api_joyeria.Application.Interfaces.Services;
+using AutoMapper;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-namespace api_joyeria.Api.Controllers;
-
-[ApiController]
-[Route("api/checkout")]
-public class CheckoutController : ControllerBase
+namespace api_joyeria.Api.Controllers
 {
-    private readonly ICartService _cartService;
-    private readonly IOrderService _orderService;
-
-    public CheckoutController(ICartService cartService, IOrderService orderService)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CheckoutController : ControllerBase
     {
-        _cartService = cartService;
-        _orderService = orderService;
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
+
+        public CheckoutController(IMediator mediator, IMapper mapper)
+        {
+            _mediator = mediator;
+            _mapper = mapper;
+        }
+
+        /// <summary>
+        /// Crea una orden guest en estado Pending.
+        /// - No contiene lógica de negocio.
+        /// - Mapea DTO -> Command y delega a Application (MediatR).
+        /// </summary>
+        [HttpPost("guest")]
+        public async Task<IActionResult> CreateGuestOrder([FromBody] GuestCheckoutDto dto)
+        {
+            if (dto == null) return BadRequest();
+
+            var command = _mapper.Map<CreateGuestOrderCommand>(dto);
+            var result = await _mediator.Send(command);
+
+            var response = _mapper.Map<CheckoutResultDto>(result);
+
+            return CreatedAtAction(nameof(GetOrderStatus), new { id = response.OrderId }, response);
+        }
+
+        // Placeholder para Location header; la implementación real debe venir de Application/Repository.
+        [HttpGet("{id}/status")]
+        public IActionResult GetOrderStatus(string id)
+            => Ok(new { orderId = id, status = "Pending" });
     }
-
-    [HttpPost("start")]
-    public async Task<IActionResult> StartCheckout([FromBody] CheckoutStartRequestDto dto)
-    {
-        // dto includes GuestToken, optional Shipping and IdempotencyKey if you want
-        // Validate cart and mark status = CHECKOUT_STARTED, set CheckoutStartedAt
-        await _cartService.StartCheckoutAsync(dto.GuestToken, dto); // new method
-        return Ok(new { message = "Checkout started" });
-    }
-
-    [HttpPost("/api/orders/guest")]
-    public async Task<IActionResult> CreateOrder([FromBody] CheckoutRequestDto dto)
-    {
-        var idempotencyKey = Request.Headers["Idempotency-Key"].ToString();
-        if (string.IsNullOrWhiteSpace(idempotencyKey)) return BadRequest("Missing Idempotency-Key header");
-
-        var order = await _orderService.CreateOrderFromCartAsync(dto.GuestToken, dto, idempotencyKey);
-        return CreatedAtAction(nameof(GetOrder), new { orderId = order.Id }, order);
-    }
-
-    [HttpGet("/api/orders/{orderId}")]
-    public async Task<IActionResult> GetOrder(int orderId)
-    {
-        var order = await _orderService.GetByIdAsync(orderId);
-
-        if (order == null)
-            return NotFound();
-
-        return Ok(order);
-    }
-
 }

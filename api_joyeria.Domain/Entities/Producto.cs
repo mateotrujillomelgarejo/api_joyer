@@ -1,17 +1,40 @@
-﻿using System;
+﻿using api_joyeria.Domain.ValueObjects;
 
-namespace api_joyeria.Domain.Entities;
-
-public class Producto
+namespace api_joyeria.Domain.Entities
 {
-    public int Id { get; set; }
-    public string SKU { get; set; } = string.Empty;
-    public string Nombre { get; set; } = string.Empty;
-    public string? Descripcion { get; set; }
-    public decimal UnitPrice { get; set; }
-    public int Stock { get; set; }
-    public bool IsDeleted { get; set; } = false;
-    public DateTime FechaCreacion { get; set; } = DateTime.UtcNow;
+    public sealed class Producto
+    {
+        public string Id { get; private set; }
+        public string Nombre { get; private set; }
+        public string Descripcion { get; private set; }
+        public Money Price { get; private set; }
+        public int Stock { get; private set; }
 
-    public byte[]? RowVersion { get; set; }
+        private Producto() { }
+
+        public Producto(string id, string nombre, string descripcion, Money price, int stock)
+        {
+            if (string.IsNullOrWhiteSpace(id)) throw new DomainException("Product id required");
+            Id = id;
+            Nombre = nombre;
+            Descripcion = descripcion;
+            Price = price ?? throw new DomainException("Price required");
+            Stock = stock;
+        }
+
+        public bool HasSufficientStock(int required) => Stock >= required;
+
+        public void ReduceStock(int quantity)
+        {
+            if (quantity <= 0) throw new DomainException("Quantity must be positive");
+            if (Stock < quantity) throw new DomainException($"Not enough stock for product {Id}");
+            Stock -= quantity;
+        }
+
+        public void IncreaseStock(int quantity)
+        {
+            if (quantity <= 0) throw new DomainException("Quantity must be positive");
+            Stock += quantity;
+        }
+    }
 }

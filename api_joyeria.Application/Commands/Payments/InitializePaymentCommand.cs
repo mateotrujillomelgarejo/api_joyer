@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using api_joyeria.Application.DTOs.Payment;
 
 namespace api_joyeria.Application.Commands.Payments
 {
-    internal class InitializePaymentCommand
+    public class InitializePaymentCommand : IRequest<PaymentInitResponseDto>
     {
+        public string OrderId { get; set; }
+        public string ReturnUrl { get; set; }
+        public string CancelUrl { get; set; }
     }
 }

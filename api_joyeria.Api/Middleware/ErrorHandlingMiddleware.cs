@@ -1,49 +1,50 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Text.Json;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace api_joyeria.Api.Middleware;
-
-public class ErrorHandlingMiddleware
+namespace api_joyeria.Api.Middlewares
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<ErrorHandlingMiddleware> _logger;
-
-    public ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandlingMiddleware> logger)
+    public class ErrorHandlingMiddleware
     {
-        _next = next;
-        _logger = logger;
-    }
+        private readonly RequestDelegate _next;
+        private readonly ILogger<ErrorHandlingMiddleware> _logger;
 
-    public async Task Invoke(HttpContext context)
-    {
-        try
+        public ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandlingMiddleware> logger)
         {
-            await _next(context);
+            _next = next;
+            _logger = logger;
         }
-        catch (KeyNotFoundException kex)
+
+        public async Task Invoke(HttpContext context)
         {
-            context.Response.StatusCode = (int)HttpStatusCode.NotFound;
-            context.Response.ContentType = "application/json";
-            var payload = JsonSerializer.Serialize(new { error = kex.Message });
-            _logger.LogWarning(kex, "Recurso no encontrado");
-            await context.Response.WriteAsync(payload);
+            try
+            {
+                await _next(context);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unhandled exception");
+                await HandleExceptionAsync(context, ex);
+            }
         }
-        catch (InvalidOperationException iex)
+
+        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            context.Response.ContentType = "application/json";
-            var payload = JsonSerializer.Serialize(new { error = iex.Message });
-            _logger.LogWarning(iex, "Invalid operation");
-            await context.Response.WriteAsync(payload);
-        }
-        catch (Exception ex)
-        {
+            var problem = new
+            {
+                type = "about:blank",
+                title = "Unexpected error",
+                status = (int)HttpStatusCode.InternalServerError,
+                detail = exception.Message
+            };
+
+            var payload = JsonSerializer.Serialize(problem);
+            context.Response.ContentType = "application/problem+json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            context.Response.ContentType = "application/json";
-            var payload = JsonSerializer.Serialize(new { error = "Internal server error" });
-            _logger.LogError(ex, "Unhandled exception");
-            await context.Response.WriteAsync(payload);
+            return context.Response.WriteAsync(payload);
         }
     }
 }

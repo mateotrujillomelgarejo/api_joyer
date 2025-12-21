@@ -1,13 +1,13 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Storage;
 
-namespace api_joyeria.Application.Interfaces;
-
-public interface IUnitOfWork
+namespace api_joyeria.Application.Interfaces
 {
-    Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken ct = default);
-    Task CommitAsync(IDbContextTransaction transaction, CancellationToken ct = default);
-    Task RollbackAsync(IDbContextTransaction transaction, CancellationToken ct = default);
-    Task<int> SaveChangesAsync(CancellationToken ct = default);
+    public interface IUnitOfWork
+    {
+        Task BeginTransactionAsync(CancellationToken cancellationToken = default);
+        Task CommitAsync(CancellationToken cancellationToken = default);
+        Task RollbackAsync(CancellationToken cancellationToken = default);
+        Task SaveChangesAsync(CancellationToken cancellationToken = default);
+    }
 }

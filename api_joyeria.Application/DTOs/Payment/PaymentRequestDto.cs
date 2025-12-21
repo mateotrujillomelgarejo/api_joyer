@@ -2,11 +2,12 @@
 
 namespace api_joyeria.Application.DTOs.Payment
 {
-    // api_joyeria.Application.DTOs/Payment/PaymentRequestDto.cs
     public class PaymentRequestDto
     {
-        [Required] public string IdempotencyKey { get; set; } = string.Empty;
-        [Required] public string Method { get; set; } = string.Empty; // e.g. "izipay_card"
-        public string? ReturnUrl { get; set; } // for redirect flows if needed
+        public string OrderId { get; set; }
+        public decimal Amount { get; set; }
+        public string Currency { get; set; }
+        public string ReturnUrl { get; set; }
+        public string CancelUrl { get; set; }
     }
 }

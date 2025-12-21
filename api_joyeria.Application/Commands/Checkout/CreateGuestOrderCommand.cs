@@ -1,12 +1,16 @@
-﻿using System;
+﻿using api_joyeria.Application.DTOs;
+using api_joyeria.Application.DTOs.Checkout;
+using MediatR;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace api_joyeria.Application.Commands.Checkout
 {
-    internal class CreateGuestOrderCommand
+    // Command: intención de crear una orden guest (DTO-like)
+    public class CreateGuestOrderCommand : IRequest<CheckoutResponseDto>
     {
+        public string CartId { get; set; }
+        public string Email { get; set; }
+        public AddressDto ShippingAddress { get; set; }
+        public List<CreateGuestOrderItemDto> Items { get; set; } = new();
     }
 }

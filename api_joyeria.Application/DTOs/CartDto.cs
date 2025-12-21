@@ -1,29 +1,41 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace api_joyeria.Application.DTOs;
-
-public class CartItemDto
+namespace api_joyeria.Application.DTOs
 {
-    public int Id { get; set; }
-    public int ProductId { get; set; }
-    public string ProductName { get; set; } = string.Empty;
-    public decimal UnitPrice { get; set; }
-    public int Quantity { get; set; }
-    public decimal Subtotal => UnitPrice * Quantity;
-}
+    using System.Collections.Generic;
 
-public class CartDto
-{
-    public int Id { get; set; }
-    public string GuestToken { get; set; } = string.Empty;
-    public DateTime CreatedAt { get; set; }
-    public DateTime? ExpiredAt { get; set; }
-    public decimal Subtotal { get; set; }           // calculado en servidor
-    public List<CartItemDto> Items { get; set; } = new();
-}
+    namespace api_joyeria.Api.Dtos
+    {
+        public class CartDto
+        {
+            public string Id { get; set; }
+            public List<CartItemDto> Items { get; set; }
+            public decimal Subtotal { get; set; }
+        }
 
-public class AddCartItemRequestDto
-{
-    [Required] public int ProductId { get; set; }
-    [Range(1, int.MaxValue)] public int Quantity { get; set; } = 1;
+        public class CartItemDto
+        {
+            public string ItemId { get; set; }
+            public string ProductId { get; set; }
+            public int Quantity { get; set; }
+            public decimal UnitPrice { get; set; }
+        }
+
+        public class AddCartItemDto
+        {
+            public string CartId { get; set; }
+            public string ProductId { get; set; }
+            public int Quantity { get; set; }
+        }
+
+        public class UpdateCartItemDto
+        {
+            public string CartId { get; set; }
+            public int Quantity { get; set; }
+        }
+    }
 }

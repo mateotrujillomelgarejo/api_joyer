@@ -1,53 +1,38 @@
-﻿using Microsoft.EntityFrameworkCore;
-using api_joyeria.Infrastructure.Persistence;
-using api_joyeria.Domain.Entities;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using api_joyeria.Application.Interfaces.Repositories;
+using api_joyeria.Domain.Entities;
+using api_joyeria.Infrastructure.Persistence;
 
-namespace api_joyeria.Infrastructure.Repositories;
-
-public class CartRepository : GenericRepository<Cart>, ICartRepository
+namespace api_joyeria.Infrastructure.Repositories
 {
-    public CartRepository(ApplicationDbContext context) : base(context) { }
-
-    public async Task<IEnumerable<Cart>> GetActiveCartsAsync(CancellationToken ct = default)
+    public class CartRepository : ICartRepository
     {
-        return await _dbSet
-            .Where(cart => cart.ExpiredAt == null || cart.ExpiredAt > DateTime.UtcNow)
-            .Include(c => c.Items)
-            .ToListAsync(ct);
-    }
+        private readonly ApplicationDbContext _ctx;
 
-    public async Task<Cart?> GetCartByTokenAsync(string guestToken, CancellationToken ct = default)
-    {
-        return await _dbSet
-            .Include(cart => cart.Items)
-            .FirstOrDefaultAsync(cart => cart.GuestToken == guestToken, ct);
-    }
-
-    public async Task ExpireCartAsync(int cartId, CancellationToken ct = default)
-    {
-        var cart = await _dbSet.FindAsync(new object[] { cartId }, ct);
-        if (cart != null)
+        public CartRepository(ApplicationDbContext ctx)
         {
-            cart.ExpiredAt = DateTime.UtcNow;
-            await _context.SaveChangesAsync(ct);
+            _ctx = ctx;
         }
-    }
 
-    public async Task<IEnumerable<Cart>> GetExpiredCartsAsync(DateTime expiryDate, CancellationToken ct = default)
-    {
-        return await _dbSet
-            .Where(c => c.ExpiredAt != null && c.ExpiredAt <= expiryDate)
-            .ToListAsync(ct);
-    }
-
-    public async Task DeleteExpiredAsync(DateTime now, CancellationToken ct = default)
-    {
-        var expired = await GetExpiredCartsAsync(now, ct);
-        if (expired.Any())
+        public async Task AddAsync(Cart cart, CancellationToken ct = default)
         {
-            _dbSet.RemoveRange(expired);
-            await _context.SaveChangesAsync(ct);
+            await _ctx.Carts.AddAsync(cart, ct);
         }
+
+        public async Task<Cart> GetByIdAsync(string cartId, CancellationToken cancellationToken = default)
+        {
+            return await _ctx.Carts
+                .Include(nameof(Cart.Items))
+                .FirstOrDefaultAsync(c => c.Id == cartId, cancellationToken);
+        }
+
+        public async Task SaveChangesAsync(CancellationToken ct = default)
+        {
+            await _ctx.SaveChangesAsync(ct);
+        }
+
+        // Optionally you can add Save/Update methods depending on infra design
     }
 }

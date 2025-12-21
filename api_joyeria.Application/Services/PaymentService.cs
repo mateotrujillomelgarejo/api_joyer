@@ -1,98 +1,130 @@
-﻿using api_joyeria.Application.Interfaces;
+﻿using System;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using api_joyeria.Application.DTOs.Payment;
+using api_joyeria.Application.Interfaces;
 using api_joyeria.Application.Interfaces.Repositories;
 using api_joyeria.Application.Interfaces.Services;
 using api_joyeria.Domain.Entities;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+using api_joyeria.Domain.Enums;
+using api_joyeria.Domain.ValueObjects;
 
-namespace api_joyeria.Application.Services;
-
-public class PaymentService : IPaymentService
+namespace api_joyeria.Application.Services
 {
-    private readonly IOrderRepository _orderRepo;
-    private readonly IPaymentRepository _paymentRepo;
-    private readonly IPaymentGateway _gateway;
-    private readonly IUnitOfWork _uow;
-
-    public PaymentService(
-        IOrderRepository orderRepo,
-        IPaymentRepository paymentRepo,
-        IPaymentGateway gateway,
-        IUnitOfWork uow)
+    public class PaymentService : IPaymentService
     {
-        _orderRepo = orderRepo;
-        _paymentRepo = paymentRepo;
-        _gateway = gateway;
-        _uow = uow;
-    }
+        private readonly IOrderRepository _orderRepository;
+        private readonly IPaymentRepository _paymentRepository;
+        private readonly IPaymentGateway _paymentGateway;
+        private readonly IInventoryService _inventoryService;
 
-    // Starts or processes a payment. Requires idempotencyKey from caller (header).
-    public async Task<PaymentGatewayResult> ProcessPaymentAsync(int orderId, string method, string idempotencyKey, CancellationToken ct = default)
-    {
-        var order = await _orderRepo.GetByIdAsync(orderId, ct)
-            ?? throw new KeyNotFoundException("Order not found");
-
-        // Check existing succeeded payment
-        if (order.Payments.Any(p => p.Status == PaymentStatus.Succeeded))
-            return new PaymentGatewayResult(string.Empty, string.Empty, false, "{\"message\":\"already_paid\"}");
-
-        // Check if there's an existing attempt with same idempotency key
-        var existing = order.Payments.FirstOrDefault(p => p.IdempotencyKey == idempotencyKey);
-        if (existing != null)
+        public PaymentService(IOrderRepository orderRepository, IPaymentRepository paymentRepository, IPaymentGateway paymentGateway, IInventoryService inventoryService)
         {
-            if (existing.Status == PaymentStatus.Succeeded)
-                return new PaymentGatewayResult(existing.TransactionId, string.Empty, false, existing.GatewayResponse ?? string.Empty);
-            // else continue and possibly return stored gateway client info if present
-            if (!string.IsNullOrWhiteSpace(existing.TransactionId) && !string.IsNullOrWhiteSpace(existing.GatewayResponse))
-            {
-                return new PaymentGatewayResult(existing.TransactionId, string.Empty, true, existing.GatewayResponse);
-            }
+            _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
+            _paymentRepository = paymentRepository ?? throw new ArgumentNullException(nameof(paymentRepository));
+            _paymentGateway = paymentGateway ?? throw new ArgumentNullException(nameof(paymentGateway));
+            _inventoryService = inventoryService ?? throw new ArgumentNullException(nameof(inventoryService));
         }
 
-        // Create pending payment attempt and save inside transaction
-        var tx = await _uow.BeginTransactionAsync(ct);
-        try
+        public async Task<PaymentInitResponseDto> InitializePaymentAsync(string orderId, string returnUrl, string cancelUrl, CancellationToken cancellationToken = default)
         {
-            var payment = new Payment
+            var order = await _orderRepository.GetByIdAsync(orderId, cancellationToken);
+            if (order == null) throw new InvalidOperationException($"Order {orderId} not found");
+            if (!order.IsPaymentAllowed()) throw new InvalidOperationException($"Order {orderId} cannot be paid in status {order.Status}");
+
+            var req = new PaymentRequestDto
             {
-                OrderId = order.Id,
-                Amount = order.Total,
-                PaymentMethod = method,
-                IdempotencyKey = idempotencyKey,
-                Status = PaymentStatus.Pending,
-                AttemptedAt = DateTime.UtcNow
+                OrderId = orderId,
+                Amount = order.TotalAmount.Amount,
+                Currency = order.TotalAmount.Currency,
+                ReturnUrl = returnUrl,
+                CancelUrl = cancelUrl
             };
 
-            await _paymentRepo.AddAsync(payment, ct);
-            await _uow.SaveChangesAsync(ct);
+            var gatewayResult = await _paymentGateway.CreatePaymentAsync(req, cancellationToken);
 
-            // Call gateway to create payment intent / process
-            var result = await _gateway.CreatePaymentIntentAsync(order.Id, payment.Amount, method, idempotencyKey, ct);
+            var payment = Payment.Create(gatewayResult.PaymentId, orderId, Money.Of(order.TotalAmount.Amount, order.TotalAmount.Currency), PaymentStatus.Pending);
+            await _paymentRepository.AddAsync(payment, cancellationToken);
 
-            // Persist gateway info
-            payment.TransactionId = result.GatewayId;
-            payment.GatewayResponse = result.RawResponse;
+            return gatewayResult;
+        }
 
-            // If gateway returns immediate success (rare), mark succeeded
-            if (!result.RequiresConfirmation)
+        public async Task ConfirmPaymentAsync(string paymentReference, string gatewayStatus, string orderId, JsonElement payload, CancellationToken cancellationToken = default)
+        {
+            // Idempotencia
+            var existing = await _paymentRepository.GetByReferenceAsync(paymentReference, cancellationToken);
+            if (existing != null && existing.IsFinalized()) return;
+
+            var order = await _orderRepository.GetByIdAsync(orderId, cancellationToken);
+            if (order == null) throw new InvalidOperationException($"Order {orderId} not found");
+
+            // Optional: extract amount reported by gateway from payload (property names depend on gateway)
+            decimal gatewayAmount = TryExtractAmount(payload);
+
+            // Validate amount matches order total
+            if (gatewayAmount > 0m && gatewayAmount != order.TotalAmount.Amount)
             {
-                payment.Status = PaymentStatus.Succeeded;
-                order.MarkPaid();
+                // suspicious notification — log and throw or mark payment rejected
+                throw new InvalidOperationException($"Payment amount mismatch for order {orderId}. Gateway={gatewayAmount}, Expected={order.TotalAmount.Amount}");
             }
 
-            _paymentRepo.Update(payment);
-            _orderRepo.Update(order);
+            bool success = string.Equals(gatewayStatus, "SUCCESS", StringComparison.OrdinalIgnoreCase)
+                           || string.Equals(gatewayStatus, "APPROVED", StringComparison.OrdinalIgnoreCase);
 
-            await _uow.SaveChangesAsync(ct);
-            await _uow.CommitAsync(tx, ct);
+            if (success)
+            {
+                if (existing == null)
+                {
+                    existing = Payment.Create(paymentReference, orderId, order.TotalAmount, PaymentStatus.Completed);
+                    await _paymentRepository.AddAsync(existing, cancellationToken);
+                }
+                else
+                {
+                    existing.MarkAsCompleted();
+                    await _paymentRepository.UpdateAsync(existing, cancellationToken);
+                }
 
-            return result;
-        }
-        catch
-        {
-            await _uow.RollbackAsync(tx, ct);
-            throw;
+                order.MarkAsPaid();
+                await _orderRepository.UpdateAsync(order, cancellationToken);
+
+                foreach (var oi in order.Items)
+                {
+                    await _inventoryService.ReduceStockAsync(oi.ProductId, oi.Quantity, cancellationToken);
+                }
+            }
+            else
+            {
+                if (existing == null)
+                {
+                    existing = Payment.Create(paymentReference, orderId, order.TotalAmount, PaymentStatus.Failed);
+                    await _paymentRepository.AddAsync(existing, cancellationToken);
+                }
+                else
+                {
+                    existing.MarkAsFailed();
+                    await _paymentRepository.UpdateAsync(existing, cancellationToken);
+                }
+
+                order.MarkAsPaymentFailed();
+                await _orderRepository.UpdateAsync(order, cancellationToken);
+            }
+
+            static decimal TryExtractAmount(JsonElement payload)
+            {
+                try
+                {
+                    if (payload.ValueKind == JsonValueKind.Object)
+                    {
+                        if (payload.TryGetProperty("amount", out var a) && a.ValueKind == JsonValueKind.Number)
+                            return a.GetDecimal();
+                        if (payload.TryGetProperty("payment_amount", out var b) && b.ValueKind == JsonValueKind.Number)
+                            return b.GetDecimal();
+                    }
+                }
+                catch { /* ignore parse errors */ }
+                return 0m;
+            }
         }
     }
 }

@@ -1,8 +1,13 @@
-﻿using api_joyeria.Domain.Entities;
+﻿using api_joyeria.Application.DTOs;
+using api_joyeria.Domain.Entities;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace api_joyeria.Application.Interfaces.Repositories;
-
-public interface IProductoRepository : IRepository<Producto>
+namespace api_joyeria.Application.Interfaces.Repositories
 {
-    Task<IEnumerable<Producto>> GetByNameAsync(string name, CancellationToken ct = default);
+    public interface IProductoRepository
+    {
+        Task<Producto> GetByIdAsync(string productId, CancellationToken cancellationToken = default);
+        Task<IEnumerable<Producto>> GetAllAsync(CancellationToken cancellationToken = default);
+    }
 }

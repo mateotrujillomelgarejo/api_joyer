@@ -1,7 +1,21 @@
-﻿namespace api_joyeria.Domain.Entities;
+﻿using api_joyeria.Domain.ValueObjects;
 
-public class OrderCustomer
+namespace api_joyeria.Domain.Entities
 {
-    public string FullName { get; set; } = string.Empty;
-    public string? Phone { get; set; }
+    public sealed class OrderCustomer
+    {
+        public Email Email { get; private set; }
+        public bool IsGuest { get; private set; }
+
+        private OrderCustomer() { }
+
+        public static OrderCustomer CreateGuest(string email)
+        {
+            return new OrderCustomer
+            {
+                Email = Email.Of(email),
+                IsGuest = true
+            };
+        }
+    }
 }

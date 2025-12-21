@@ -1,23 +1,40 @@
-﻿using System;
-
-namespace api_joyeria.Domain.Entities;
-
-public class CartItem
+﻿namespace api_joyeria.Domain.Entities
 {
-    public int Id { get; set; }
-    public int CartId { get; set; } // FK
-    public Cart? Cart { get; set; }
-
-    public int ProductId { get; set; }
-    public string ProductName { get; set; } = string.Empty; // snapshot
-    public decimal UnitPrice { get; set; } // snapshot
-    public int Quantity { get; set; } = 1;
-
-    public decimal Subtotal => UnitPrice * Quantity;
-
-    public void SetQuantity(int qty)
+    public sealed class CartItem
     {
-        if (qty < 1) throw new ArgumentException("Quantity must be >= 1");
-        Quantity = qty;
+        public string Id { get; private set; }
+
+        public string CartId { get; private set; }   // 🔥 FK EXPLÍCITA
+        public string ProductId { get; private set; }
+        public int Quantity { get; private set; }
+
+        private CartItem() { }
+
+        public CartItem(string cartId, string productId, int quantity)
+        {
+            Id = Guid.NewGuid().ToString("N");
+
+            if (string.IsNullOrWhiteSpace(cartId)) throw new DomainException("CartId required");
+            if (string.IsNullOrWhiteSpace(productId)) throw new DomainException("ProductId required");
+            if (quantity <= 0) throw new DomainException("Quantity must be greater than zero");
+
+            CartId = cartId;
+            ProductId = productId;
+            Quantity = quantity;
+        }
+
+        internal void IncreaseQuantity(int amount)
+        {
+            if (amount <= 0) throw new DomainException("Increase amount must be positive");
+            Quantity += amount;
+        }
+
+        internal void SetQuantity(int newQuantity)
+        {
+            if (newQuantity <= 0)
+                throw new DomainException("Quantity must be greater than zero");
+
+            Quantity = newQuantity;
+        }
     }
 }

@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace api_joyeria.Application.Interfaces.Services;
-
-public interface IInventoryService
+namespace api_joyeria.Application.Interfaces.Services
 {
-    // Check availability for items (best-effort)
-    Task<bool> CheckAvailabilityAsync(IEnumerable<(int productId, int qty)> items, CancellationToken ct = default);
-
-    // Reserve or decrement stock as part of transaction
-    Task ReserveOrDecrementAsync(IEnumerable<(int productId, int qty)> items, CancellationToken ct = default);
+    public interface IInventoryService
+    {
+        Task ValidateStockAsync(string productId, int requiredQuantity, CancellationToken cancellationToken = default);
+        Task ReserveStockAsync(string productId, int quantity, CancellationToken cancellationToken = default);
+        Task ReduceStockAsync(string productId, int quantity, CancellationToken cancellationToken = default);
+    }
 }

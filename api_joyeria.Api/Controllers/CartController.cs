@@ -1,63 +1,53 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using api_joyeria.Application.DTOs;
 using api_joyeria.Application.Interfaces.Services;
+using api_joyeria.Application.DTOs.api_joyeria.Api.Dtos;
 
-namespace api_joyeria.Api.Controllers;
-
-[ApiController]
-[Route("api/cart")]
-public class CartController : ControllerBase
+namespace api_joyeria.Api.Controllers
 {
-    private readonly ICartService _cartService;
-
-    public CartController(ICartService cartService)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CartController : ControllerBase
     {
-        _cartService = cartService;
-    }
+        private readonly ICartService _cartService;
 
-    [HttpPost]
-    public async Task<IActionResult> CreateCart()
-    {
-        var cart = await _cartService.CreateCartAsync();
-        return Ok(cart);
-    }
+        public CartController(ICartService cartService)
+        {
+            _cartService = cartService;
+        }
 
-    [HttpGet("{cartId:int}")]
-    public async Task<IActionResult> GetCartById(int cartId)
-    {
-        var cart = await _cartService.GetCartByIdAsync(cartId);
-        if (cart == null) return NotFound();
-        return Ok(cart);
-    }
+        [HttpPost("items")]
+        public async Task<IActionResult> AddItem([FromBody] AddCartItemDto dto)
+        {
+            if (dto == null) return BadRequest();
+            await _cartService.AddItemAsync(dto.CartId, dto.ProductId, dto.Quantity);
+            return NoContent();
+        }
 
-    [HttpGet("guest/{guestToken}")]
-    public async Task<IActionResult> GetByToken(string guestToken)
-    {
-        var cart = await _cartService.GetCartByTokenAsync(guestToken);
-        if (cart == null) return NotFound();
-        return Ok(cart);
-    }
+        [HttpGet]
+        public async Task<IActionResult> GetCart([FromQuery] string cartId)
+        {
+            if (string.IsNullOrWhiteSpace(cartId)) return BadRequest();
+            var cart = await _cartService.GetCartAsync(cartId);
+            if (cart == null) return NotFound();
+            // Map domain Cart -> API DTO via AutoMapper or build lightweight DTO here.
+            // Assuming AutoMapper is wired, controllers should return DTOs. For brevity, return domain object.
+            return Ok(cart);
+        }
 
-    [HttpPost("{guestToken}/items")]
-    public async Task<IActionResult> AddItem(string guestToken, [FromBody] AddCartItemRequestDto dto)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
+        [HttpPut("items/{itemId}")]
+        public async Task<IActionResult> UpdateItem(string itemId, [FromBody] UpdateCartItemDto dto)
+        {
+            if (dto == null) return BadRequest();
+            await _cartService.UpdateItemQuantityAsync(dto.CartId, itemId, dto.Quantity);
+            return NoContent();
+        }
 
-        var cart = await _cartService.AddItemToCartAsync(guestToken, dto);
-        return Ok(cart);
-    }
-
-    [HttpDelete("{guestToken}/items/{itemId:int}")]
-    public async Task<IActionResult> RemoveItem(string guestToken, int itemId)
-    {
-        await _cartService.RemoveItemFromCartAsync(guestToken, itemId);
-        return NoContent();
-    }
-
-    [HttpDelete("{guestToken}/items")]
-    public async Task<IActionResult> ClearCart(string guestToken)
-    {
-        await _cartService.ClearCartAsync(guestToken);
-        return NoContent();
+        [HttpDelete("items/{itemId}")]
+        public async Task<IActionResult> RemoveItem(string itemId, [FromQuery] string cartId)
+        {
+            if (string.IsNullOrWhiteSpace(cartId)) return BadRequest();
+            await _cartService.RemoveItemAsync(cartId, itemId);
+            return NoContent();
+        }
     }
 }

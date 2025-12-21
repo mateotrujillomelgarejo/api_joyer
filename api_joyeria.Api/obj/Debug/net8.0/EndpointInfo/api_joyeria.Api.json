@@ -5,11 +5,30 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/cart": {
+    "/api/Cart/items": {
       "post": {
         "tags": [
           "Cart"
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCartItemDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCartItemDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCartItemDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success"
@@ -17,7 +36,7 @@
         }
       }
     },
-    "/api/cart/{cartId}": {
+    "/api/Cart": {
       "get": {
         "tags": [
           "Cart"
@@ -25,31 +44,7 @@
         "parameters": [
           {
             "name": "cartId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/cart/guest/{guestToken}": {
-      "get": {
-        "tags": [
-          "Cart"
-        ],
-        "parameters": [
-          {
-            "name": "guestToken",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -62,14 +57,14 @@
         }
       }
     },
-    "/api/cart/{guestToken}/items": {
-      "post": {
+    "/api/Cart/items/{itemId}": {
+      "put": {
         "tags": [
           "Cart"
         ],
         "parameters": [
           {
-            "name": "guestToken",
+            "name": "itemId",
             "in": "path",
             "required": true,
             "schema": {
@@ -81,17 +76,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddCartItemRequestDto"
+                "$ref": "#/components/schemas/UpdateCartItemDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddCartItemRequestDto"
+                "$ref": "#/components/schemas/UpdateCartItemDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddCartItemRequestDto"
+                "$ref": "#/components/schemas/UpdateCartItemDto"
               }
             }
           }
@@ -108,29 +103,7 @@
         ],
         "parameters": [
           {
-            "name": "guestToken",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/cart/{guestToken}/items/{itemId}": {
-      "delete": {
-        "tags": [
-          "Cart"
-        ],
-        "parameters": [
-          {
-            "name": "guestToken",
+            "name": "itemId",
             "in": "path",
             "required": true,
             "schema": {
@@ -138,12 +111,10 @@
             }
           },
           {
-            "name": "itemId",
-            "in": "path",
-            "required": true,
+            "name": "cartId",
+            "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -154,7 +125,7 @@
         }
       }
     },
-    "/api/checkout/start": {
+    "/api/Checkout/guest": {
       "post": {
         "tags": [
           "Checkout"
@@ -163,17 +134,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CheckoutStartRequestDto"
+                "$ref": "#/components/schemas/GuestCheckoutDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CheckoutStartRequestDto"
+                "$ref": "#/components/schemas/GuestCheckoutDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CheckoutStartRequestDto"
+                "$ref": "#/components/schemas/GuestCheckoutDto"
               }
             }
           }
@@ -185,50 +156,18 @@
         }
       }
     },
-    "/api/orders/guest": {
-      "post": {
-        "tags": [
-          "Checkout"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CheckoutRequestDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CheckoutRequestDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CheckoutRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/orders/{orderId}": {
+    "/api/Checkout/{id}/status": {
       "get": {
         "tags": [
           "Checkout"
         ],
         "parameters": [
           {
-            "name": "orderId",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -239,33 +178,10 @@
         }
       }
     },
-    "/api/payments/izipay/webhook": {
-      "post": {
-        "tags": [
-          "IzipayWebhook"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/payment/{orderId}": {
+    "/api/Payment/init": {
       "post": {
         "tags": [
           "Payment"
-        ],
-        "parameters": [
-          {
-            "name": "orderId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "requestBody": {
           "content": {
@@ -300,36 +216,33 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Productos"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProductoDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProductoDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProductoDto"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductoDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductoDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductoDto"
+                  }
+                }
               }
             }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
           }
         }
       }
@@ -345,114 +258,64 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Productos"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProductoDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProductoDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProductoDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Productos"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/WeatherForecast": {
-      "get": {
-        "tags": [
-          "WeatherForecast"
-        ],
-        "operationId": "GetWeatherForecast",
         "responses": {
           "200": {
             "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
+                  "$ref": "#/components/schemas/ProductoDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
+                  "$ref": "#/components/schemas/ProductoDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
+                  "$ref": "#/components/schemas/ProductoDto"
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/Webhook/izipay": {
+      "post": {
+        "tags": [
+          "Webhook"
+        ],
+        "parameters": [
+          {
+            "name": "X-Signature",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
           }
         }
       }
@@ -460,120 +323,112 @@
   },
   "components": {
     "schemas": {
-      "AddCartItemRequestDto": {
-        "required": [
-          "productId"
-        ],
+      "AddCartItemDto": {
         "type": "object",
         "properties": {
-          "productId": {
-            "type": "integer",
-            "format": "int32"
+          "CartId": {
+            "type": "string",
+            "nullable": true
           },
-          "quantity": {
-            "maximum": 2147483647,
-            "minimum": 1,
+          "ProductId": {
+            "type": "string",
+            "nullable": true
+          },
+          "Quantity": {
             "type": "integer",
             "format": "int32"
           }
         },
         "additionalProperties": false
       },
-      "CheckoutRequestDto": {
-        "required": [
-          "city",
-          "guestEmail",
-          "guestName",
-          "guestToken",
-          "street"
-        ],
+      "AddressDto": {
         "type": "object",
         "properties": {
-          "guestToken": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "guestName": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "guestEmail": {
-            "minLength": 1,
-            "type": "string",
-            "format": "email"
-          },
-          "street": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "city": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "state": {
+          "RecipientName": {
             "type": "string",
             "nullable": true
           },
-          "zip": {
+          "Line1": {
             "type": "string",
             "nullable": true
           },
-          "country": {
+          "Line2": {
             "type": "string",
             "nullable": true
           },
-          "phone": {
+          "City": {
             "type": "string",
             "nullable": true
           },
-          "shippingMethodId": {
+          "PostalCode": {
             "type": "string",
             "nullable": true
           },
-          "idempotencyKey": {
+          "Country": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "CheckoutStartRequestDto": {
+      "CreateGuestOrderItemDto": {
         "type": "object",
         "properties": {
-          "guestToken": {
+          "ProductId": {
             "type": "string",
             "nullable": true
           },
-          "guestEmail": {
+          "Quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GuestCheckoutDto": {
+        "type": "object",
+        "properties": {
+          "CartId": {
             "type": "string",
             "nullable": true
           },
-          "shippingAddress": {
-            "$ref": "#/components/schemas/ShippingAddressDto"
-          },
-          "idempotencyKey": {
+          "Email": {
             "type": "string",
+            "nullable": true
+          },
+          "ShippingAddress": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "Items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateGuestOrderItemDto"
+            },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
       "PaymentRequestDto": {
-        "required": [
-          "idempotencyKey",
-          "method"
-        ],
         "type": "object",
         "properties": {
-          "idempotencyKey": {
-            "minLength": 1,
-            "type": "string"
+          "OrderId": {
+            "type": "string",
+            "nullable": true
           },
-          "method": {
-            "minLength": 1,
-            "type": "string"
+          "Amount": {
+            "type": "number",
+            "format": "double"
           },
-          "returnUrl": {
+          "Currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "ReturnUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "CancelUrl": {
             "type": "string",
             "nullable": true
           }
@@ -583,86 +438,39 @@
       "ProductoDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sku": {
+          "Id": {
             "type": "string",
             "nullable": true
           },
-          "nombre": {
+          "Nombre": {
             "type": "string",
             "nullable": true
           },
-          "descripcion": {
+          "Descripcion": {
             "type": "string",
             "nullable": true
           },
-          "unitPrice": {
+          "Precio": {
             "type": "number",
             "format": "double"
           },
-          "stock": {
+          "Stock": {
             "type": "integer",
             "format": "int32"
           }
         },
         "additionalProperties": false
       },
-      "ShippingAddressDto": {
-        "required": [
-          "city",
-          "street"
-        ],
+      "UpdateCartItemDto": {
         "type": "object",
         "properties": {
-          "street": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "city": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "state": {
+          "CartId": {
             "type": "string",
             "nullable": true
           },
-          "zipCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "country": {
-            "type": "string",
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "WeatherForecast": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "temperatureC": {
+          "Quantity": {
             "type": "integer",
             "format": "int32"
-          },
-          "temperatureF": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "summary": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
