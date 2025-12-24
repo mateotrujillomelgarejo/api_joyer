@@ -4,6 +4,99 @@
     "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Tests\\api_joyeria.Tests.csproj": {}
   },
   "projects": {
+    "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\api_joyeria.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\api_joyeria.Api.csproj",
+        "projectName": "api_joyeria.Api",
+        "projectPath": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\api_joyeria.Api.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\api_joyeria.Application.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\api_joyeria.Application.csproj"
+              },
+              "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\api_joyeria.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Infrastructure\\api_joyeria.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\api_joyeria.Application.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -65,6 +158,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[14.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -213,6 +310,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.27.9, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -270,6 +371,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\api_joyeria.Api.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Api\\api_joyeria.Api.csproj"
+              },
               "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\api_joyeria.Application.csproj": {
                 "projectPath": "C:\\Users\\User\\Desktop\\spring\\api_joyeria\\api_joyeria.Application\\api_joyeria.Application.csproj"
               },
@@ -298,6 +402,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.9.0, )"
+            },
             "Moq": {
               "target": "Package",
               "version": "[4.20.2, )"

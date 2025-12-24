@@ -25,7 +25,13 @@ namespace api_joyeria.Tests.Application
             var cartId = "cart-1";
             var productId = "prod-1";
             var cart = new Cart(cartId);
-            cart.AddItem(new CartItem(productId, 2));
+            // FIX: use the same cartId when creating the CartItem so the domain invariant holds
+            cart.AddItem(new CartItem(
+                cartId,
+                productId,
+                2
+            ));
+
 
             var mockCartRepo = new Mock<ICartRepository>();
             mockCartRepo.Setup(r => r.GetByIdAsync(cartId, It.IsAny<CancellationToken>())).ReturnsAsync(cart);

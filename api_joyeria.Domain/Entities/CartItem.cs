@@ -1,10 +1,12 @@
-﻿namespace api_joyeria.Domain.Entities
+﻿using api_joyeria.Domain.ValueObjects;
+
+namespace api_joyeria.Domain.Entities
 {
     public sealed class CartItem
     {
         public string Id { get; private set; }
 
-        public string CartId { get; private set; }   // 🔥 FK EXPLÍCITA
+        public string CartId { get; private set; }
         public string ProductId { get; private set; }
         public int Quantity { get; private set; }
 

@@ -36,9 +36,18 @@ namespace api_joyeria.Api.Controllers
             }
 
             // Extract fields (depends on gateway payload)
-            string paymentReference = payload.GetPropertyOrDefault("paymentReference") ?? payload.GetPropertyOrDefault("payment_id");
-            string orderId = payload.GetPropertyOrDefault("orderId") ?? payload.GetPropertyOrDefault("order_id");
-            string gatewayStatus = payload.GetPropertyOrDefault("status") ?? payload.GetPropertyOrDefault("gateway_status");
+            string? paymentReference =
+    payload.GetPropertyOrDefault("paymentReference")
+    ?? payload.GetPropertyOrDefault("payment_id");
+
+            string? orderId =
+                payload.GetPropertyOrDefault("orderId")
+                ?? payload.GetPropertyOrDefault("order_id");
+
+            string? gatewayStatus =
+                payload.GetPropertyOrDefault("status")
+                ?? payload.GetPropertyOrDefault("gateway_status");
+
 
             if (string.IsNullOrWhiteSpace(paymentReference) || string.IsNullOrWhiteSpace(orderId))
             {
@@ -53,9 +62,9 @@ namespace api_joyeria.Api.Controllers
                 {
                     var cmd = new ConfirmPaymentCommand
                     {
-                        PaymentReference = paymentReference,
-                        OrderId = orderId,
-                        GatewayStatus = gatewayStatus,
+                        PaymentReference = paymentReference!,
+                        OrderId = orderId!,
+                        GatewayStatus = gatewayStatus ?? "UNKNOWN",
                         Payload = payload
                     };
                     await _mediator.Send(cmd);
@@ -72,9 +81,11 @@ namespace api_joyeria.Api.Controllers
 
     internal static class JsonElementExtensions
     {
-        public static string GetPropertyOrDefault(this JsonElement e, string propName)
+        public static string? GetPropertyOrDefault(this JsonElement e, string propName)
         {
-            if (e.ValueKind != JsonValueKind.Object) return null;
+            if (e.ValueKind != JsonValueKind.Object)
+                return null;
+
             if (e.TryGetProperty(propName, out var v))
             {
                 return v.ValueKind switch
@@ -86,6 +97,7 @@ namespace api_joyeria.Api.Controllers
                     _ => v.GetRawText()
                 };
             }
+
             return null;
         }
     }

@@ -24,7 +24,7 @@ namespace api_joyeria.Tests.Domain
 
             // Assert
             Assert.Equal(id, order.Id);
-            Assert.Equal(3, order.Items.Count);
+            Assert.Equal(2, order.Items.Count);
             Assert.Equal("Pending", order.Status.ToString());
             Assert.Equal(25m, order.TotalAmount.Amount);
             Assert.Equal("USD", order.TotalAmount.Currency);

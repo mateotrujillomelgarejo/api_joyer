@@ -9,6 +9,7 @@ namespace api_joyeria.Domain.Entities
         public string Descripcion { get; private set; }
         public Money Price { get; private set; }
         public int Stock { get; private set; }
+        public string? ImageUrl { get; private set; }
 
         private Producto() { }
 
@@ -20,6 +21,12 @@ namespace api_joyeria.Domain.Entities
             Descripcion = descripcion;
             Price = price ?? throw new DomainException("Price required");
             Stock = stock;
+        }
+
+        public void SetImageUrl(string? url)
+        {
+            // Puedes validar formato, longitud, etc. según convenga
+            ImageUrl = string.IsNullOrWhiteSpace(url) ? null : url;
         }
 
         public bool HasSufficientStock(int required) => Stock >= required;

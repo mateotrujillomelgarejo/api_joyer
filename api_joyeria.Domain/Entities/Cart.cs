@@ -17,6 +17,9 @@ namespace api_joyeria.Domain.Entities
         public void AddItem(CartItem item)
         {
             if (item == null) throw new DomainException("Cart item is null");
+            if (item.CartId != this.Id)
+                throw new DomainException("CartItem cartId mismatch with Cart.Id");
+
             var existing = _items.Find(i => i.ProductId == item.ProductId);
             if (existing != null)
             {
@@ -27,6 +30,7 @@ namespace api_joyeria.Domain.Entities
                 _items.Add(item);
             }
         }
+
 
         public void UpdateItemQuantity(string productId, int newQuantity)
         {

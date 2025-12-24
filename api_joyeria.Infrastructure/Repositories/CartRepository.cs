@@ -33,6 +33,5 @@ namespace api_joyeria.Infrastructure.Repositories
             await _ctx.SaveChangesAsync(ct);
         }
 
-        // Optionally you can add Save/Update methods depending on infra design
     }
 }

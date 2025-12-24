@@ -57,14 +57,14 @@
         }
       }
     },
-    "/api/Cart/items/{itemId}": {
+    "/api/Cart/items/{productId}": {
       "put": {
         "tags": [
           "Cart"
         ],
         "parameters": [
           {
-            "name": "itemId",
+            "name": "productId",
             "in": "path",
             "required": true,
             "schema": {
@@ -103,7 +103,7 @@
         ],
         "parameters": [
           {
-            "name": "itemId",
+            "name": "productId",
             "in": "path",
             "required": true,
             "schema": {
@@ -214,6 +214,26 @@
         "tags": [
           "Productos"
         ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -286,6 +306,48 @@
         }
       }
     },
+    "/api/Productos/{id}/image": {
+      "post": {
+        "tags": [
+          "Productos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Webhook/izipay": {
       "post": {
         "tags": [
@@ -326,15 +388,15 @@
       "AddCartItemDto": {
         "type": "object",
         "properties": {
-          "CartId": {
+          "cartId": {
             "type": "string",
             "nullable": true
           },
-          "ProductId": {
+          "productId": {
             "type": "string",
             "nullable": true
           },
-          "Quantity": {
+          "quantity": {
             "type": "integer",
             "format": "int32"
           }
@@ -344,27 +406,27 @@
       "AddressDto": {
         "type": "object",
         "properties": {
-          "RecipientName": {
+          "recipientName": {
             "type": "string",
             "nullable": true
           },
-          "Line1": {
+          "line1": {
             "type": "string",
             "nullable": true
           },
-          "Line2": {
+          "line2": {
             "type": "string",
             "nullable": true
           },
-          "City": {
+          "city": {
             "type": "string",
             "nullable": true
           },
-          "PostalCode": {
+          "postalCode": {
             "type": "string",
             "nullable": true
           },
-          "Country": {
+          "country": {
             "type": "string",
             "nullable": true
           }
@@ -374,11 +436,11 @@
       "CreateGuestOrderItemDto": {
         "type": "object",
         "properties": {
-          "ProductId": {
+          "productId": {
             "type": "string",
             "nullable": true
           },
-          "Quantity": {
+          "quantity": {
             "type": "integer",
             "format": "int32"
           }
@@ -388,22 +450,30 @@
       "GuestCheckoutDto": {
         "type": "object",
         "properties": {
-          "CartId": {
+          "cartId": {
             "type": "string",
             "nullable": true
           },
-          "Email": {
+          "email": {
             "type": "string",
             "nullable": true
           },
-          "ShippingAddress": {
+          "shippingAddress": {
             "$ref": "#/components/schemas/AddressDto"
           },
-          "Items": {
+          "items": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreateGuestOrderItemDto"
             },
+            "nullable": true
+          },
+          "returnUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "cancelUrl": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -412,23 +482,23 @@
       "PaymentRequestDto": {
         "type": "object",
         "properties": {
-          "OrderId": {
+          "orderId": {
             "type": "string",
             "nullable": true
           },
-          "Amount": {
+          "amount": {
             "type": "number",
             "format": "double"
           },
-          "Currency": {
+          "currency": {
             "type": "string",
             "nullable": true
           },
-          "ReturnUrl": {
+          "returnUrl": {
             "type": "string",
             "nullable": true
           },
-          "CancelUrl": {
+          "cancelUrl": {
             "type": "string",
             "nullable": true
           }
@@ -438,25 +508,29 @@
       "ProductoDto": {
         "type": "object",
         "properties": {
-          "Id": {
+          "id": {
             "type": "string",
             "nullable": true
           },
-          "Nombre": {
+          "nombre": {
             "type": "string",
             "nullable": true
           },
-          "Descripcion": {
+          "descripcion": {
             "type": "string",
             "nullable": true
           },
-          "Precio": {
+          "precio": {
             "type": "number",
             "format": "double"
           },
-          "Stock": {
+          "stock": {
             "type": "integer",
             "format": "int32"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -464,11 +538,11 @@
       "UpdateCartItemDto": {
         "type": "object",
         "properties": {
-          "CartId": {
+          "cartId": {
             "type": "string",
             "nullable": true
           },
-          "Quantity": {
+          "quantity": {
             "type": "integer",
             "format": "int32"
           }

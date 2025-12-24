@@ -1,4 +1,5 @@
-﻿using System;
+﻿using api_joyeria.Application.DTOs.Payment;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace api_joyeria.Application.DTOs.Checkout
         public string OrderId { get; set; }
         public decimal Total { get; set; }
         public string Status { get; set; }
+        public PaymentInitResponseDto Payment { get; set; }
     }
 
     public class CheckoutResultDto
@@ -18,5 +20,6 @@ namespace api_joyeria.Application.DTOs.Checkout
         public string OrderId { get; set; }
         public decimal Total { get; set; }
         public string Status { get; set; }
+        public PaymentInitResultDto Payment { get; set; }
     }
 }

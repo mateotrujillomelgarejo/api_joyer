@@ -26,6 +26,10 @@ namespace api_joyeria.Infrastructure.Persistence.Configurations
             builder.Property(p => p.Stock)
                    .IsRequired();
 
+            builder.Property<string?>(nameof(Producto.ImageUrl))
+                .HasMaxLength(1000)
+                .IsRequired(false);
+
             // 🔥 VALUE OBJECT Money
             builder.OwnsOne(p => p.Price, m =>
             {

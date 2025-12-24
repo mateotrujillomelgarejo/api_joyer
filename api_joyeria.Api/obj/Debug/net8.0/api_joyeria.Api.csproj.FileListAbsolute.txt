@@ -98,3 +98,5 @@ C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\Mediat
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\CloudinaryDotNet.dll
+C:\Users\User\Desktop\spring\api_joyeria\api_joyeria.Api\bin\Debug\net8.0\Newtonsoft.Json.dll

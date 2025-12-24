@@ -34,13 +34,13 @@
   {
     "ContainingType": "api_joyeria.Api.Controllers.CartController",
     "Method": "UpdateItem",
-    "RelativePath": "api/Cart/items/{itemId}",
+    "RelativePath": "api/Cart/items/{productId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "itemId",
+        "Name": "productId",
         "Type": "System.String",
         "IsRequired": true
       },
@@ -55,13 +55,13 @@
   {
     "ContainingType": "api_joyeria.Api.Controllers.CartController",
     "Method": "RemoveItem",
-    "RelativePath": "api/Cart/items/{itemId}",
+    "RelativePath": "api/Cart/items/{productId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "itemId",
+        "Name": "productId",
         "Type": "System.String",
         "IsRequired": true
       },
@@ -128,7 +128,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[api_joyeria.Application.DTOs.ProductoDto, api_joyeria.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -166,6 +177,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "api_joyeria.Api.Controllers.ProductosController",
+    "Method": "UploadImage",
+    "RelativePath": "api/Productos/{id}/image",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "api_joyeria.Api.Controllers.WebhookController",
