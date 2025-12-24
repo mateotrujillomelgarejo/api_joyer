@@ -19,6 +19,7 @@ namespace api_joyeria.Domain.Entities
             if (quantity <= 0) throw new DomainException("Quantity must be greater than zero");
             UnitPrice = unitPrice ?? throw new DomainException("UnitPrice is required");
 
+            Id = Guid.NewGuid().ToString("N");
             ProductId = productId;
             Quantity = quantity;
         }
