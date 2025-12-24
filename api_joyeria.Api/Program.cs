@@ -97,11 +97,8 @@ app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseCors("AllowLocalFrontend");
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseRouting();
 app.UseHttpsRedirection();
